@@ -26,6 +26,7 @@ export default function Home() {
   const [territories, setTerritories] = useState<string[]>([]);
   const [stats, setStats] = useState<Stats>({ owners: 0, tags: 0, territories: 0 });
   const [loading, setLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const [facetsLoading, setFacetsLoading] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
@@ -40,6 +41,7 @@ export default function Home() {
   });
   const [nextCursor, setNextCursor] = useState<string | undefined>();
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(50);
 
   // Načítanie dát pri spustení
   useEffect(() => {
@@ -82,7 +84,7 @@ export default function Home() {
       if (filters.region_id) params.append('region_id', filters.region_id);
       if (filters.district_id) params.append('district_id', filters.district_id);
       params.append('mode', filters.mode);
-      params.append('limit', '50');
+      params.append('limit', pageSize.toString());
       if (cursor) params.append('cursor', cursor);
 
       const response = await fetch(`/api/search?${params}`);
@@ -90,12 +92,7 @@ export default function Home() {
         const data = await response.json();
         setResults(data.items);
         setNextCursor(data.next_cursor);
-        
-        // Aktualizácia počtu záznamov v UI
-        const recordCountElement = document.getElementById('record-count');
-        if (recordCountElement) {
-          recordCountElement.textContent = `Záznamov: ${data.items.length}${data.next_cursor ? '+' : ''}`;
-        }
+        setTotalCount(data.total_estimated || data.items.length);
       } else {
         setResults([]);
         setNextCursor(undefined);
@@ -178,6 +175,28 @@ export default function Home() {
     }
   };
 
+  const handlePageSizeChange = (newPageSize: number) => {
+    setPageSize(newPageSize);
+    setCurrentPage(1);
+    setNextCursor(undefined);
+    // performSearch sa spustí automaticky kvôli useEffect dependency
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Pre jednoduchosť implementácie - cursor-based pagination je komplexnejšia
+    // Pre teraz sa vrátime na začiatok a simulujeme stránkovanie
+    performSearch(currentFilters);
+  };
+
+  // useEffect pre performSearch keď sa zmení pageSize
+  useEffect(() => {
+    if (currentFilters.q || currentFilters.kuz !== 'Všetky' || currentFilters.lv || 
+        currentFilters.region_id || currentFilters.district_id) {
+      performSearch(currentFilters);
+    }
+  }, [pageSize]);
+
   const handleImportSuccess = () => {
     // Refresh territories a ostatné dáta
     fetchTerritories();
@@ -189,61 +208,77 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Sticky header */}
-      <div className="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        {/* Horný panel s nadpisom a prepínačom témy */}
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
-              <Database className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-                Register neznámych vlastníkov
-              </h1>
-              {/* Štatistiky */}
-              <div className="flex items-center gap-4 mt-2 text-sm text-gray-600 dark:text-gray-400">
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                  {stats.owners.toLocaleString('sk-SK')} vlastníkov
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                  {stats.tags.toLocaleString('sk-SK')} tagov
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                  {stats.territories} území
-                </span>
+      {/* Modern sticky header */}
+      <div className="sticky top-0 z-40">
+        {/* Glass effect background */}
+        <div className="backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-700/50">
+          {/* Compact header */}
+          <div className="px-6 py-3">
+            <div className="flex items-center justify-between">
+              {/* Left side - title and stats */}
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                    <Database className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                      Register neznámych vlastníkov
+                    </h1>
+                  </div>
+                </div>
+                
+                {/* Inline compact stats */}
+                <div className="hidden lg:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                    <span className="font-medium">{stats.owners.toLocaleString('sk-SK')}</span>
+                    <span>vlastníkov</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                    <span className="font-medium">{stats.tags.toLocaleString('sk-SK')}</span>
+                    <span>tagov</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                    <span className="font-medium">{stats.territories}</span>
+                    <span>území</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right side - actions */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setIsImportModalOpen(true)}
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all hover:shadow-md"
+                >
+                  <Upload className="h-4 w-4" />
+                  <span className="hidden sm:inline">Import CSV</span>
+                </button>
+                <ThemeToggle />
               </div>
             </div>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsImportModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors"
-            >
-              <Upload className="h-4 w-4" />
-              Import CSV
-            </button>
 
-            <ThemeToggle />
+          {/* Integrated search filters */}
+          <div className="border-t border-gray-200/30 dark:border-gray-700/30">
+            <SearchFilters
+              onSearch={handleSearch}
+              territories={territories}
+              loading={loading}
+            />
           </div>
         </div>
-
-        {/* Filter panel */}
-        <SearchFilters
-          onSearch={handleSearch}
-          territories={territories}
-          loading={loading}
-        />
       </div>
 
       {/* Main content */}
       <div className="flex gap-6 p-6">
         {/* Výsledky (ľavá strana) */}
         <div className="flex-1">
+
+          
           {currentFilters.groupByLv ? (
             <GroupedResults
               results={results}
@@ -253,10 +288,14 @@ export default function Home() {
               pagination={{
                 currentPage,
                 totalPages: nextCursor ? currentPage + 1 : currentPage,
+                onPageChange: handlePageChange,
                 onPrevious: handlePreviousPage,
                 onNext: handleNextPage,
                 canPrevious: currentPage > 1,
-                canNext: !!nextCursor
+                canNext: !!nextCursor,
+                pageSize,
+                onPageSizeChange: handlePageSizeChange,
+                totalResults: totalCount
               }}
             />
           ) : (
@@ -268,10 +307,14 @@ export default function Home() {
               pagination={{
                 currentPage,
                 totalPages: nextCursor ? currentPage + 1 : currentPage,
+                onPageChange: handlePageChange,
                 onPrevious: handlePreviousPage,
                 onNext: handleNextPage,
                 canPrevious: currentPage > 1,
-                canNext: !!nextCursor
+                canNext: !!nextCursor,
+                pageSize,
+                onPageSizeChange: handlePageSizeChange,
+                totalResults: totalCount
               }}
             />
           )}

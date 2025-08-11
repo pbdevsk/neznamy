@@ -1,11 +1,14 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, ExternalLink, ChevronDown, ChevronUp, Search } from 'lucide-react';
+import { ExternalLink, ChevronDown, ChevronUp, Search, MapPin, Map } from 'lucide-react';
 import { useState } from 'react';
 import type { SearchResult } from '@/lib/db';
 import { TagChip } from './tag-chip';
 import { RecordDetail } from './record-detail';
+import { Pagination } from './pagination';
 import { createGoogleSearchUrl, createGoogleSearchDescription, isGoogleSearchAvailable } from '@/lib/google-search';
+import { createGoogleMapsUrl, createZbgisUrl, createZbgisLvUrl, isGoogleMapsAvailable, createGoogleMapsDescription, createZbgisDescription, createZbgisLvDescription } from '@/lib/map-utils';
+import { useBatchGeocoding } from '@/hooks/use-geocoding';
 
 interface ResultsTableProps {
   results: SearchResult[];
@@ -15,15 +18,23 @@ interface ResultsTableProps {
   pagination?: {
     currentPage: number;
     totalPages: number;
+    onPageChange: (page: number) => void;
     onPrevious: () => void;
     onNext: () => void;
     canPrevious: boolean;
     canNext: boolean;
+    pageSize: number;
+    onPageSizeChange: (size: number) => void;
+    totalResults?: number;
   };
 }
 
 export function ResultsTable({ results, loading, onTagClick, onSearch, pagination }: ResultsTableProps) {
   const [expandedRecords, setExpandedRecords] = useState<Set<number>>(new Set());
+  
+  // Batch geocoding pre všetky lokality v tabuľke
+  const localities = results.map(r => r.katastralne_uzemie);
+  const geocodingResults = useBatchGeocoding(localities);
 
   const toggleRecordDetail = (recordId: number) => {
     setExpandedRecords(prev => {
@@ -76,14 +87,12 @@ export function ResultsTable({ results, loading, onTagClick, onSearch, paginatio
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
       {/* Hlavička tabuľky */}
       <div className="border-b border-gray-200 dark:border-gray-700 px-6 py-3">
-        <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+        <div className="grid grid-cols-10 gap-4 text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
           <div className="col-span-4">Meno & tagy</div>
           <div className="col-span-3">Katastrálne územie</div>
           <div className="col-span-1">Poradie</div>
           <div className="col-span-1">LV</div>
-          <div className="col-span-1">Kataster</div>
-          <div className="col-span-1">Google</div>
-          <div className="col-span-1">Detail</div>
+          <div className="col-span-1">Akcie</div>
         </div>
       </div>
 
@@ -100,7 +109,7 @@ export function ResultsTable({ results, loading, onTagClick, onSearch, paginatio
               }`}
               onClick={() => toggleRecordDetail(result.id)}
             >
-              <div className="grid grid-cols-12 gap-4">
+              <div className="grid grid-cols-10 gap-4">
                 {/* Meno & tagy */}
                 <div className="col-span-4 space-y-2">
                   {/* Meno */}
@@ -143,23 +152,21 @@ export function ResultsTable({ results, loading, onTagClick, onSearch, paginatio
                   {result.lv}
                 </div>
 
-                {/* Kataster tlačidlo */}
-                <div className="col-span-1 flex items-center justify-center">
+                {/* Action tlačidlá a expand indikátor */}
+                <div className="col-span-1 flex items-center justify-center gap-1">
+                  {/* Kataster PDF */}
                   <a
                     href={`https://kataster.skgeodesy.sk/Portal45/api/Bo/GeneratePrfPublic/?cadastralUnitCode=${result.poradie}&prfNumber=${result.lv}&outputType=pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/40 rounded transition-colors"
-                    title={`Zobraziť v katastri: Poradie ${result.poradie}, LV ${result.lv}`}
-                    onClick={(e) => e.stopPropagation()} // Zabráni otvoreniu detailu pri kliknutí na PDF
+                    className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                    title={`Kataster PDF: Poradie ${result.poradie}, LV ${result.lv}`}
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    <ExternalLink className="h-3 w-3" />
-                    PDF
+                    <ExternalLink className="h-4 w-4" />
                   </a>
-                </div>
 
-                {/* Google search tlačidlo */}
-                <div className="col-span-1 flex items-center justify-center">
+                  {/* Google Search */}
                   {(() => {
                     const googleUrl = createGoogleSearchUrl(result.meno_raw, result.katastralne_uzemie);
                     const isAvailable = isGoogleSearchAvailable(result.meno_raw);
@@ -170,30 +177,81 @@ export function ResultsTable({ results, loading, onTagClick, onSearch, paginatio
                         href={googleUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/40 rounded transition-colors"
+                        className="p-1 rounded hover:bg-green-100 dark:hover:bg-green-900/30 text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition-colors"
                         title={description}
-                        aria-label={description}
-                        onClick={(e) => e.stopPropagation()} // Zabráni otvoreniu detailu pri kliknutí na Google
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        <Search className="h-3 w-3" />
-                        Google
+                        <Search className="h-4 w-4" />
                       </a>
                     ) : (
                       <div 
-                        className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-gray-800 rounded cursor-not-allowed"
+                        className="p-1 rounded text-gray-400 dark:text-gray-600 cursor-not-allowed"
                         title="Google vyhľadávanie nie je k dispozícii"
-                        aria-disabled="true"
                       >
-                        <Search className="h-3 w-3" />
-                        Google
+                        <Search className="h-4 w-4" />
                       </div>
                     );
                   })()}
-                </div>
 
-                {/* Expand indikátor */}
-                <div className="col-span-1 flex items-center justify-center">
-                  <div className={`p-2 rounded-full transition-all duration-200 ${
+                  {/* Google Maps */}
+                  {(() => {
+                    const isAvailable = isGoogleMapsAvailable(result.katastralne_uzemie);
+                    const geocodingData = geocodingResults.get(result.katastralne_uzemie);
+                    const mapsUrl = geocodingData?.googleMapsUrl || createGoogleMapsUrl(result.katastralne_uzemie);
+                    const description = createGoogleMapsDescription(result.katastralne_uzemie);
+                    
+                    return isAvailable ? (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`p-1 rounded transition-colors ${
+                          geocodingData?.loading 
+                            ? 'text-gray-400 dark:text-gray-600 cursor-wait'
+                            : 'hover:bg-orange-100 dark:hover:bg-orange-900/30 text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300'
+                        }`}
+                        title={geocodingData?.hasCoordinates ? `${description} (s presnou polohou)` : description}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <MapPin className="h-4 w-4" />
+                      </a>
+                    ) : (
+                      <div 
+                        className="p-1 rounded text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                        title="Google Maps nie je k dispozícii"
+                      >
+                        <MapPin className="h-4 w-4" />
+                      </div>
+                    );
+                  })()}
+
+                  {/* ZBGIS LV Detail */}
+                  {(() => {
+                    const geocodingData = geocodingResults.get(result.katastralne_uzemie);
+                    const zbgisLvUrl = createZbgisLvUrl(result.poradie, result.lv, geocodingData?.coordinates || undefined);
+                    const hasCoordinates = geocodingData?.hasCoordinates || false;
+                    const description = createZbgisLvDescription(result.poradie, result.lv, hasCoordinates);
+                    
+                    return (
+                      <a
+                        href={zbgisLvUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`p-1 rounded transition-colors ${
+                          geocodingData?.loading 
+                            ? 'text-gray-400 dark:text-gray-600 cursor-wait'
+                            : 'hover:bg-purple-100 dark:hover:bg-purple-900/30 text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300'
+                        }`}
+                        title={description}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Map className="h-4 w-4" />
+                      </a>
+                    );
+                  })()}
+
+                  {/* Expand indikátor */}
+                  <div className={`p-1 rounded-full transition-all duration-200 ${
                     expandedRecords.has(result.id)
                       ? 'bg-blue-100 dark:bg-blue-800 text-blue-600 dark:text-blue-300'
                       : 'text-gray-400 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-600 dark:hover:text-gray-300'
@@ -221,31 +279,18 @@ export function ResultsTable({ results, loading, onTagClick, onSearch, paginatio
 
       {/* Pagination */}
       {pagination && (
-        <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-700 dark:text-gray-300">
-              Strana {pagination.currentPage} / {pagination.totalPages}
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={pagination.onPrevious}
-                disabled={!pagination.canPrevious}
-                className="px-3 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Predchádzajúca
-              </button>
-              <button
-                onClick={pagination.onNext}
-                disabled={!pagination.canNext}
-                className="px-3 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-              >
-                Ďalšia
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
+        <Pagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+          onPageChange={pagination.onPageChange}
+          onPrevious={pagination.onPrevious}
+          onNext={pagination.onNext}
+          canPrevious={pagination.canPrevious}
+          canNext={pagination.canNext}
+          pageSize={pagination.pageSize}
+          onPageSizeChange={pagination.onPageSizeChange}
+          totalResults={pagination.totalResults}
+        />
       )}
     </div>
   );

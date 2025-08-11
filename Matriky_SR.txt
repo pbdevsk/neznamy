@@ -1,0 +1,4970 @@
+IČO
+00315940
+00305855
+00307726
+00308749
+00307742
+00313254
+00304654
+00305260
+00305278
+00308765
+00310182
+00320498
+00313271
+00320501
+00321842
+00308773
+00318604
+00306711
+00306771
+00311413
+00321168
+00308781
+00322814
+00316563
+00317063
+00313289
+00304662
+00306789
+00308790
+00325031
+00323977
+00308803
+00312258
+00305308
+00304671
+00316571
+00314404
+00315117
+00306371
+00323985
+00312266
+00310239
+00318001
+00331333
+00312282
+00317080
+00312291
+00309419
+00309401
+
+obec
+Ábelová
+Abrahám
+Alekšince
+Andovce
+Báb
+Bacúch
+Báhoň
+Baka
+Baloň
+Bánov
+Bánovce nad Bebravou
+Banská Belá
+Banská Bystrica
+Banská Štiavnica
+Bardejov
+Bardoňovo
+Bátka
+Bátorove Kosihy
+Bátovce
+Beckov
+Belá
+Belá
+Belá nad Cirochou
+Belá-Dulice
+Beluša
+Beňuš
+Bermolákovo
+Beša
+Bešeňov
+Bežovce
+Bidovce
+Bíňa
+Bíňovce
+Blatná na Ostrove
+Blatné
+Blatnica
+Bobrov
+Bobrovec
+Bodza
+Bohdanovce
+Bohdanovce nad Trnavou
+Bojná
+Bojnice
+Boľ
+Boleráz
+Bolešov
+Borová
+Borský Mikuláš
+Borský Svätý Jur
+
+PSČ
+
+Ulica a číslo
+
+Okres
+
+985 13
+925 45
+951 22
+941 23
+951 34
+976 64
+900 84
+930 04
+930 08
+941 01
+957 01
+966 15
+975 39
+969 24
+085 01
+941 49
+980 21
+946 34
+935 03
+916 38
+013 05
+943 53
+067 81
+038 11
+018 61
+976 64
+900 27
+935 36
+941 41
+072 53
+044 45
+943 56
+919 07
+930 32
+900 82
+038 15
+029 42
+032 21
+946 16
+044 16
+919 09
+956 01
+972 01
+076 53
+919 08
+018 53
+919 61
+908 77
+908 79
+
+Ábelová 96
+Abrahám 52
+Alekšince 389
+Andovce 157
+Pracháre 465
+Hlavná 279
+SNP 65
+Baka 262
+Baloň 22
+Hviezdoslavova 34
+Nám. Ľ. Štúra 1/1
+Banská Belá 298
+ul. ČSA 26
+Radničné námestie 1
+Radničné námestie 16
+Bardoňovo 124
+Bátka 161
+Hlavná 873
+Bátovce 2
+Beckov 180
+Oslobodenia 183
+Belá 32
+Osloboditeľov 652/23
+Belá-Dulice 86
+Farská 1045/6
+Beňuš 355
+Hlavná 111
+Beša 107
+Bešeňov 33
+Bežovce 184
+Bidovce 210
+Bíňa 107
+Bíňovce 134
+Blatná na Ostrove 203
+Šarfická 300/37
+Blatnica 1
+Vyšný Koniec 173
+Bobrovec 90
+Bodza 108
+Bohdanovce 142
+Bohdanovce nad Trnavou 268
+Bojná 201
+Sládkovičova 1
+Hlavná 216
+Boleráz 586
+Bolešov 78
+Borová 56
+Smuha 1
+Štepničky 690
+
+Lučenec
+Galanta
+Nitra
+Nové Zámky
+Nitra
+Brezno
+Pezinok
+Dunajská Streda
+Dunajská Streda
+Nové Zámky
+Bánovce nad Bebravou
+Banská Štiavnica
+Banská Bystrica
+Banská Štiavnica
+Bardejov
+Nové Zámky
+Rimavská Sobota
+Komárno
+Levice
+Nové Mesto nad Váhom
+Žilina
+Nové Zámky
+Snina
+Martin
+Púchov
+Brezno
+Senec
+Levice
+Nové Zámky
+Sobrance
+Košice - okolie
+Nové Zámky
+Trnava
+Dunajská Streda
+Senec
+Martin
+Námestovo
+Liptovský Mikuláš
+Komárno
+Košice - okolie
+Trnava
+Topoľčany
+Prievidza
+Trebišov
+Trnava
+Ilava
+Trnava
+Senica
+Senica
+
+00331341
+00311430
+00310255
+00325074
+00307777
+00308811
+00603147
+00641383
+00603155
+00603295
+00603317
+00304557
+00304565
+00603392
+00603520
+00604887
+00641243
+00304603
+00603201
+00304611
+00312312
+00314412
+00313319
+00309443
+00326861
+00309451
+00330345
+00313491
+00308820
+00317101
+00306398
+00319759
+00325082
+00304697
+00330353
+00319236
+00324035
+00315982
+00332275
+00318019
+00316601
+00321192
+00326895
+00311456
+00319767
+00307785
+00331406
+00330388
+00309478
+00319775
+
+Borša
+Bošáca
+Bošany
+Bracovce
+Branč
+Branovo
+Bratislava I - Staré Mesto
+Bratislava II - Podunajské Biskupice
+Bratislava II - Ružinov
+Bratislava II - Vrakuňa
+Bratislava III - Nové Mesto
+Bratislava III - Rača
+Bratislava III - Vajnory
+Bratislava IV - Devínska Nová Ves
+Bratislava IV - Karlová Ves
+Bratislava IV - Záhorská Bystrica
+Bratislava V - Čunovo
+Bratislava V - Jarovce
+Bratislava V - Petržalka
+Bratislava-Rusovce
+Brestovany
+Breza
+Brezno
+Brezová pod Bradlom
+Brezovica
+Brodské
+Brusnica
+Brusno
+Bruty
+Brvnište
+Búč
+Budča
+Budkovce
+Budmerice
+Bukovce
+Bušince
+Buzica
+Buzitka
+Bystré
+Bystričany
+Bystrička
+Bytča
+Bzenov
+Bzince pod Javorinou
+Bzovík
+Cabaj - Čápor
+Cejkov
+Cernina
+Cerová
+Cerovo
+
+076 32
+913 07
+956 18
+072 05
+951 13
+941 31
+814 21
+825 61
+821 02
+821 07
+832 91
+831 06
+831 07
+841 07
+842 62
+843 51
+851 10
+851 10
+852 12
+851 10
+919 27
+029 53
+977 01
+906 13
+082 74
+908 85
+090 31
+976 62
+943 55
+018 12
+946 35
+962 33
+072 15
+900 86
+090 22
+991 22
+044 73
+985 41
+094 34
+972 45
+038 04
+014 38
+082 42
+916 11
+962 41
+951 17
+076 06
+090 16
+906 33
+962 52
+
+Ružová 188
+Hlavná 257
+SNP 112
+Bracovce 275
+Hlavné námestie 1
+Branovo 46
+Vajanského nábrežie 3
+Trojičné námestie 11
+Mierová 21
+Šíravská 7
+Junácka 1
+Kubačova 21
+Roľnícka 109
+Novoveská 17/A
+Námestie sv. Františka 8
+Čsl.tankistov 134
+Hraničiarska 144/22
+Palmová 1
+Kutlíková 17
+Vývojová 174
+J. Nižňanského 6
+Grúnik 56
+Nám.gen.M.R.Štefánika 1
+Námestie M.R.Štefánika 1
+Brezovica 59
+Školská 1030
+Brusnica 44
+Ondrej nad Hronom 360
+Bruty 111
+Brvnište 390
+Námestie vodcu Bulcsu 91
+Lhenická 33
+Budkovce 244
+Budmerice 534
+Bukovce 79
+Železničná 4/320
+Buzica 130
+Buzitka 126
+Bystré 98
+Mirka Nešpora 1/17
+Bystrička 260
+Námestie SR 1/1
+Bzenov 38
+Bzince pod Javorinou 348
+Bzovík 299
+Cabaj - Čápor 543
+Cejkov 334
+Cernina 67
+Cerová 104
+Cerovo 259
+
+Trebišov
+Nové Mesto nad Váhom
+Partizánske
+Michalovce
+Nitra
+Nové Zámky
+Bratislava I
+Bratislava II
+Bratislava II
+Bratislava II
+Bratislava III
+Bratislava III
+Bratislava III
+Bratislava IV
+Bratislava IV
+Bratislava IV
+Bratislava V
+Bratislava V
+Bratislava V
+Bratislava V
+Trnava
+Námestovo
+Brezno
+Myjava
+Sabinov
+Skalica
+Stropkov
+Banská Bystrica
+Nové Zámky
+Považská Bystrica
+Komárno
+Zvolen
+Michalovce
+Pezinok
+Stropkov
+Veľký Krtíš
+Košice - okolie
+Lučenec
+Vranov nad Topľou
+Prievidza
+Martin
+Bytča
+Prešov
+Nové Mesto nad Váhom
+Krupina
+Nitra
+Trebišov
+Svidník
+Senica
+Krupina
+
+00312347
+00316008
+00319783
+00313971
+00311464
+00306843
+00306401
+00324060
+00304701
+00587672
+00304719
+00318035
+00319244
+00324078
+00319261
+00318043
+00331422
+00313335
+00308846
+00312355
+00317128
+00321206
+00306410
+00331465
+00313980
+00307858
+00313343
+00305880
+00305341
+00318655
+00319279
+00316644
+00308854
+00312363
+00306878
+00319805
+00319813
+00305898
+00318060
+00316041
+00321214
+00314447
+00321231
+00319830
+00312380
+00316059
+00328197
+00317136
+00309508
+00304727
+
+Cífer
+Cinobaňa
+Čabradský Vrbovok
+Čadca
+Čachtice
+Čaka
+Čalovec
+Čaňa
+Častá
+Čata
+Čataj
+Čavoj
+Čebovce
+Čečejovce
+Čelovce
+Čereňany
+Čerhov
+Čerín
+Černík
+Červeník
+Červený Kameň
+Čičmany
+Číčov
+Čierna nad Tisou
+Čierne
+Čierne Kľačany
+Čierny Balog
+Čierny Brod
+Čiližská Radvaň
+Číž
+Dačov Lom
+Ďanová
+Dedinka
+Dechtice
+Demandice
+Detva
+Detvianska Huta
+Diakovce
+Diviaky nad Nitricou
+Divín
+Divina
+Dlhá nad Oravou
+Dlhé Pole
+Dobrá Niva
+Dobrá Voda
+Dobroč
+Dobšiná
+Dohňany
+Dojč
+Doľany
+
+919 43
+985 22
+962 51
+022 01
+916 21
+935 68
+946 02
+044 14
+900 89
+935 63
+900 83
+972 29
+991 25
+044 71
+991 41
+972 46
+076 81
+974 01
+941 05
+920 42
+018 56
+013 17
+946 19
+076 43
+023 13
+953 05
+976 52
+925 08
+930 08
+980 43
+991 35
+038 42
+941 50
+919 53
+935 85
+962 12
+962 06
+925 81
+972 25
+985 52
+013 31
+027 55
+013 32
+962 61
+919 54
+985 53
+049 25
+020 51
+906 02
+900 88
+
+Námestie A. Hlinku 31
+Cinobaňa 299
+Čabradský Vrbovok 59
+Námestie Slobody 30
+Malinovského 769
+Čaka 112
+Čalovec 170
+Osloboditeľov 22
+Hlavná 168
+Hlavná 80
+Hlavná 333
+Čavoj 86
+Szedera Fabiána 320
+Buzická 55
+Čelovce 113
+Pálenická 491/4
+Čerhov Dlhá 100
+Čerín 11
+Černík 145
+Kalinčiakova 26
+Červený Kameň 226
+Čičmany 166
+Dunajská 41
+Námestie pionierov 1
+Ústredie 189
+Čierne Kľačany 66
+Závodie 2.II
+Čierny Brod 1
+Čilizská Radvaň 285
+Číž 48
+Dačov Lom 113
+Ďanová 22
+Dedinka 97
+Dechtice 488
+Demandice 236
+Tajovského 7
+Detvianska Huta 102
+Hlavná 118
+Diviaky nad Nitricou 167
+Námestie mieru 654/3
+Divina 50
+Dlhá nad Oravou 250
+Dlhé Pole 249
+Námestie SNP 47/9
+Dobrá Voda 121
+Dobroč 140
+SNP 554
+Dohňany 68
+Dojč 125
+Doľany 169
+
+Trnava
+Poltár
+Krupina
+Čadca
+Nové Mesto nad Váhom
+Levice
+Komárno
+Košice - okolie
+Pezinok
+Levice
+Senec
+Prievidza
+Veľký Krtíš
+Košice - okolie
+Veľký Krtíš
+Prievidza
+Trebišov
+Banská Bystrica
+Nové Zámky
+Hlohovec
+Ilava
+Žilina
+Komárno
+Trebišov
+Čadca
+Zlaté Moravce
+Brezno
+Galanta
+Dunajská Streda
+Rimavská Sobota
+Veľký Krtíš
+Martin
+Nové Zámky
+Trnava
+Levice
+Detva
+Detva
+Šaľa
+Prievidza
+Lučenec
+Žilina
+Dolný Kubín
+Žilina
+Zvolen
+Trnava
+Lučenec
+Rožňava
+Púchov
+Senica
+Pezinok
+
+00312398
+00317152
+00306894
+00319295
+00311502
+00321249
+00312401
+37869051
+00686301
+00312410
+00319309
+00305910
+00311511
+00319317
+00318086
+00305367
+00321257
+00314463
+00317179
+00312452
+00308871
+00306916
+00305430
+00317195
+00312461
+00326984
+00311529
+00324116
+00317209
+00308889
+00311537
+00309516
+00316636
+00319899
+00319902
+00306444
+00400009
+00305383
+00312495
+00308897
+00321265
+00306941
+00318671
+00316075
+00327026
+00305391
+00321966
+00304743
+00305936
+00308901
+
+Dolná Krupá
+Dolná Mariková
+Dolná Seč
+Dolná Strehová
+Dolná Súča
+Dolná Tižina
+Dolné Dubové
+Dolné Lefantovce
+Dolné Lovčice
+Dolné Orešany
+Dolné Plachtince
+Dolné Saliby
+Dolné Srnie
+Dolné Strháre
+Dolné Vestenice
+Dolný Bar
+Dolný Hričov
+Dolný Kubín
+Dolný Lieskov
+Dolný Lopašov
+Dolný Ohaj
+Dolný Pial
+Dolný Štál
+Domaniža
+Drahovce
+Drienov
+Drietoma
+Družstevná pri Hornáde
+Dubnica nad Váhom
+Dubník
+Dubodiel
+Dubovce
+Dubové
+Dúbravy
+Dudince
+Dulovce
+Dunajská Lužná
+Dunajská Streda
+Dvorníky
+Dvory nad Žitavou
+Fačkov
+Farná
+Figa
+Fiľakovo
+Fričovce
+Gabčíkovo
+Gaboltov
+Gajary
+Galanta
+Gbelce
+
+919 65
+018 02
+935 31
+991 02
+913 32
+013 04
+919 52
+951 45
+919 27
+919 02
+991 24
+925 02
+916 41
+991 04
+972 23
+930 14
+013 41
+026 27
+018 21
+922 04
+941 43
+935 37
+930 10
+018 16
+922 41
+082 04
+913 03
+044 31
+018 41
+941 35
+913 23
+908 62
+038 23
+962 24
+962 71
+946 56
+900 42
+929 01
+920 56
+941 31
+013 15
+935 66
+982 51
+986 01
+082 37
+930 05
+086 02
+900 61
+924 18
+943 42
+
+Nám. L. van Beethovena 139/1
+Dolná Mariková 150
+Dolná Seč 22
+Hlavná 52
+Dolná Súča 2
+Dolná Tižina 333
+Dolné Dubové 1
+Nitrianska 36
+SNP 69/865
+Dolné Orešany 210
+Dolné Plachtince 95
+Dolné Saliby 355
+Dolné Srnie 242
+Dolné Strháre 126
+Záhumenská 74
+Dolný Bar 30
+Osloboditeľov 131
+Hviezdoslavovo námestie 1651/1
+Dolný Lieskov 193
+Dolný Lopašov 79
+Dolný Ohaj 109
+Hlavná 34
+Dolný Štál 676
+Domaniža 426
+Hlavná 49/127
+Mierová 1
+Drietoma 29
+Hlavná 38
+Bratislavská 434/9
+Dubník 247
+Dubodiel 33
+Dubovce 175
+Dubové 50
+Dúbravy 196
+Okružná 212
+Hlavná 33
+Jánošíkovská 466/7
+Hlavná 50/16
+Dvorníky 428
+Hlavné námestie 6
+Fačkov 69
+Farná 462
+Figa 11
+Radničná 25
+Fričovce 34
+Hlavná 1039/21
+Gaboltov 87
+Gajary 67
+Mierové námestie 940/1
+J. Stampayho 1
+
+Trnava
+Považská Bystrica
+Levice
+Veľký Krtíš
+Trenčín
+Žilina
+Trnava
+Nitra
+Trnava
+Trnava
+Veľký Krtíš
+Galanta
+Nové Mesto nad Váhom
+Veľký Krtíš
+Prievidza
+Dunajská Streda
+Žilina
+Dolný Kubín
+Považská Bystrica
+Piešťany
+Nové Zámky
+Levice
+Dunajská Streda
+Považská Bystrica
+Piešťany
+Prešov
+Trenčín
+Košice - okolie
+Ilava
+Nové Zámky
+Trenčín
+Skalica
+Turčianske Teplice
+Detva
+Krupina
+Komárno
+Senec
+Dunajská Streda
+Hlohovec
+Nové Zámky
+Žilina
+Levice
+Rimavská Sobota
+Lučenec
+Prešov
+Dunajská Streda
+Bardejov
+Malacky
+Galanta
+Nové Zámky
+
+00309524
+00329061
+00318701
+00318710
+00321982
+00307939
+00314471
+00322954
+00318736
+00307947
+00316091
+00318094
+00324175
+00332399
+00330469
+00313424
+00322024
+00309532
+00320609
+00312509
+00329886
+00318744
+00318752
+00320617
+00306967
+00332429
+00305405
+00309541
+00316105
+00306975
+00319911
+00319929
+00319937
+00317276
+00317284
+00311553
+00311561
+00316695
+00318108
+00320633
+00310441
+00312533
+00312541
+00305952
+00306991
+00311588
+00312568
+00305421
+00319953
+00314030
+
+Gbely
+Gelnica
+Gemerská Ves
+Gemerský Jablonec
+Giraltovce
+Golianovo
+Habovka
+Habura
+Hajnáčka
+Hájske
+Halič
+Handlová
+Haniska
+Hanušovce nad Topľou
+Havaj
+Heľpa
+Hertník
+Hlboké
+Hliník nad Hronom
+Hlohovec
+Hniezdne
+Hnúšťa
+Hodejov
+Hodruša-Hámre
+Hokovce
+Holčíkovce
+Holice
+Holíč
+Holiša
+Hontianska Vrbica
+Hontianske Moravce
+Hontianske Nemce
+Hontianske Tesáre
+Horná Mariková
+Horná Poruba
+Horná Streda
+Horná Súča
+Horná Štubňa
+Horná Ves
+Horná Ždaňa
+Horné Obdokovce
+Horné Orešany
+Horné Otrokovce
+Horné Saliby
+Horné Semerovce
+Horné Srnie
+Horné Zelenice
+Horný Bar
+Horný Tisovník
+Horný Vadičov
+
+908 45
+056 01
+982 62
+980 35
+087 01
+951 08
+027 32
+067 52
+980 33
+951 33
+985 11
+972 51
+044 57
+094 31
+090 23
+976 68
+086 42
+906 31
+966 01
+920 01
+065 01
+981 01
+980 31
+966 61
+935 83
+094 05
+930 34
+908 51
+985 57
+935 55
+962 71
+962 65
+962 68
+018 03
+018 35
+916 24
+913 33
+038 46
+972 48
+966 04
+956 08
+919 03
+920 62
+925 03
+935 84
+914 42
+920 52
+930 33
+962 75
+023 45
+
+Nám.slobody 1261
+Banícke námestie 4
+Gemerská Ves 109
+Hlavná 277
+Dukelská 75
+Golianovo 400
+Pod Grúňom 24
+Habura 63
+Hlavné námestie 500
+Hájske 410
+Mieru 66
+Námestie baníkov 7
+Haniska 248
+Mierová 333
+Havaj 13
+Farská 588/2
+Hertník 162
+Hlboké 114
+Železničná 320
+M. R. Štefánika 1
+Hniezdne 1
+Francisciho 74
+Hodejov 141
+Hodruša-Hámre 185
+Hokovce 151
+Holčíkovce 40
+Póšfa 151
+Bratislavská 5
+Holiša 61
+Hontianska Vrbica 267
+Hontianska 255/29
+Hontianske Nemce 500
+Hontianske Tesáre 66
+Modlatín 357
+Horná Poruba 39
+Horná Streda 407
+Horná Súča 233
+Horná Štubňa 455
+Horná Ves 191
+Horná Ždaňa 167
+Horné Obdokovce 389
+Horné Orešany 190
+Horné Otrokovce 146
+Hlavná 297
+Horné Semerovce 100
+Družstevná 430/1
+Horné Zelenice 14
+Horný Bar 184
+Horný Tiisovník 77
+Horný Vadičov 160
+
+Skalica
+Gelnica
+Revúca
+Rimavská Sobota
+Svidník
+Nitra
+Tvrdošín
+Medzilaborce
+Rimavská Sobota
+Šaľa
+Lučenec
+Prievidza
+Košice - okolie
+Vranov nad Topľou
+Stropkov
+Brezno
+Bardejov
+Senica
+Žiar nad Hronom
+Hlohovec
+Stará Ľubovňa
+Rimavská Sobota
+Rimavská Sobota
+Žarnovica
+Levice
+Vranov nad Topľou
+Dunajská Streda
+Skalica
+Lučenec
+Levice
+Krupina
+Krupina
+Krupina
+Považská Bystrica
+Ilava
+Nové Mesto nad Váhom
+Trenčín
+Turčianske Teplice
+Prievidza
+Žiar nad Hronom
+Topoľčany
+Trnava
+Hlohovec
+Galanta
+Levice
+Trenčín
+Hlohovec
+Dunajská Streda
+Detva
+Kysucké Nové Mesto
+
+00318761
+00308005
+00326194
+00321303
+00320650
+00329151
+00311618
+00318779
+00326224
+00319961
+00318787
+00313483
+00307041
+00320676
+00308013
+00305987
+00319341
+00314501
+00315214
+00328316
+00308919
+00323021
+00306452
+00315222
+00315231
+00314510
+00327115
+00327140
+00304760
+00306461
+00318124
+00312584
+00310506
+00317331-1
+00306479
+00307092
+00304786
+31827004
+00306487
+00309583
+00328332
+00304808
+00305472
+00329207
+00304816
+00320706
+00329932
+00308056
+00327212
+00317349
+
+Hostice
+Hosťovce
+Hôrka
+Hôrky
+Hrabičov
+Hrabušice
+Hrádok
+Hrachovo
+Hranovnica
+Hriňová
+Hrnčiarska Ves
+Hronec
+Hronovce
+Hronský Beňadik
+Hruboňovo
+Hrubý Šúr
+Hrušov
+Hruštín
+Hubová
+Hucín
+Hul
+Humenné
+Hurbanovo
+Huty
+Hybe
+Chlebnice
+Chmeľov
+Chminianska Nová Ves
+Chorvátsky Grob
+Chotín
+Chrenovec-Brusno
+Chtelnica
+Chynorany
+Ilava
+Imeľ
+Ipeľský Sokolec
+Ivanka pri Dunaji
+Ivanka pri Nitre
+Iža
+Jablonica
+Jablonov nad Turňou
+Jablonové
+Jahodná
+Jaklovce
+Jakubov
+Janova Lehota
+Jarabina
+Jarok
+Jarovnice
+Jasenica
+
+980 04
+951 91
+059 12
+010 04
+966 78
+053 15
+916 33
+980 52
+059 16
+962 05
+980 13
+976 45
+935 61
+966 53
+951 25
+925 25
+991 42
+029 52
+034 93
+049 13
+941 44
+066 28
+947 01
+027 46
+032 31
+027 55
+082 15
+082 33
+900 25
+946 31
+972 32
+922 05
+956 33
+019 01
+946 52
+935 75
+900 28
+951 12
+946 39
+906 32
+049 43
+900 54
+930 21
+055 61
+900 63
+966 24
+065 31
+951 48
+082 63
+018 17
+
+Hlavná 158
+Hosťovce 49
+Hôrka 141
+Hôrky 111
+Hrabičov 188
+Hlavná 171
+Hrádok 149
+Mieru 35
+Sládkovičova 398
+Partizánska 1612/5
+Hrnčiarska Ves 237
+Zlievarenská 516
+Levická cesta 3
+Mýtne nám. 445
+Hruboňovo 153
+Hrubý Šúr 205
+Hrušov 526
+ul. Kultúrna 2
+Pri Váhu 70
+Hucín 76
+Hul 435
+Kukorelliho 34
+Komárňanská 91
+Huty 84
+Hybe 2
+Chlebnice 186
+Chmeľov 89
+Školská 30
+Milana Urbana 6
+Chotín 486
+Chrenovec-Brusno 1
+Námestie 1. mája 495/52
+Cintorínska 45/1
+Mierové námestie 16/31
+Námestie J. Blaskovicsa 507/11
+Ipeľský Sokolec 119
+Štefánikova 12
+Novozámocká 326
+Ďatelinová 674
+Trnavská 801
+Jablonec nad Turňou 73
+Jablonové 197
+Nám. sv. Trojice 294/3
+Nová 464
+Jakubov 191
+Janova Lehota 38
+Jarabina 58
+Hlavná 176
+Jarovnice 223
+Jasenica 130
+
+Rimavská Sobota
+Zlaté Moravce
+Poprad
+Žilina
+Žarnovica
+Spišská Nová Ves
+Nové Mesto nad Váhom
+Rimavská Sobota
+Poprad
+Detva
+Poltár
+Brezno
+Levice
+Žarnovica
+Nitra
+Senec
+Veľký Krtíš
+Námestovo
+Ružomberok
+Revúca
+Nové Zámky
+Humenné
+Komárno
+Liptovský Mikuláš
+Liptovský Mikuláš
+Dolný Kubín
+Prešov
+Prešov
+Senec
+Komárno
+Prievidza
+Piešťany
+Partizánske
+Ilava
+Komárno
+Levice
+Senec
+Nitra
+Komárno
+Senica
+Rožňava
+Malacky
+Dunajská Streda
+Gelnica
+Malacky
+Žiar nad Hronom
+Stará Ľubovňa
+Nitra
+Sabinov
+Považská Bystrica
+
+00312614
+00324264
+00308935
+00308943
+00316725
+00308072
+00306011
+00328341
+00318833
+00325279
+00307114
+00306029
+00316121
+00307131
+00311669
+00323101
+00308951
+00306495
+00308960
+00319368
+00047244
+00518239
+00327239
+00324299
+00307190
+00326283
+00308102
+00316733
+00310549
+00323136
+00318850
+00306509
+00319996
+00314048
+00329274
+00309028
+00311685
+00316130
+00321362
+00306517
+00308986
+00306525
+00308994
+00315311
+00309001
+00309613
+00314064
+00304867
+00306037
+00311707
+
+Jaslovské Bohunice
+Jasov
+Jasová
+Jatov
+Jazernica
+Jelenec
+Jelka
+Jelšava
+Jesenské
+Jovsa
+Jur nad Hronom
+Kajal
+Kalinovo
+Kalná nad Hronom
+Kálnica
+Kamenica nad Cirochou
+Kamenica nad Hronom
+Kameničná
+Kamenín
+Kamenné Kosihy
+Kamenný Most
+Kanianka
+Kapušany
+Kecerovce
+Keť
+Kežmarok
+Klasov
+Kláštor pod Znievom
+Klátova Nová Ves
+Klenová
+Klenovec
+Klížska Nemá
+Klokoč
+Klokočov
+Kluknava
+Kmeťovo
+Kočovce
+Kokava nad Rimavicou
+Kolárovice
+Kolárovo
+Kolta
+Komárno
+Komjatice
+Komjatná
+Komoča
+Kopčany
+Korňa
+Kostolište
+Kostolná pri Dunaji
+Kostolné
+
+919 30
+044 23
+941 34
+941 09
+038 44
+951 73
+925 23
+049 16
+980 02
+072 32
+935 57
+925 92
+985 01
+935 32
+916 37
+067 83
+943 65
+946 01
+943 57
+991 27
+943 58
+972 17
+082 12
+044 47
+935 64
+060 01
+951 53
+038 43
+958 44
+067 72
+980 55
+946 20
+962 25
+023 22
+053 51
+941 62
+916 31
+985 05
+013 54
+946 03
+941 33
+945 01
+941 06
+3496
+941 21
+908 48
+023 21
+900 62
+925 25
+916 13
+
+Námestie sv. Michala 36/10A
+Hlavná 259
+Jasová 303
+Jatov 190
+Jazernica 50
+Hlavná 126
+Mierová 959/17
+Námestie republiky 499
+Sobotská 10
+Jovsa 73
+Jur nad Hronom 278
+Kajal 20
+SNP 138/14
+Červenej armády 55
+Kálnica 100
+Humenská 555
+Kamenica nad Hronom 106
+Hlavná 122
+Kamenín 641
+Kamenné Kosihy 3
+Hlavná 29
+SNP 583/1
+Hlavná 104/6
+Kecerovce 92
+Keť 34
+Hlavné námestie 1
+Klasov 108
+M.Čulena 181
+Klátova Nová Ves 100
+Klenová 126
+Námestie K.Salvu 1
+Hlavná 52
+Klokoč 1
+Klokočov 962
+Kluknava 177
+Kmeťovo 77
+Kočovce 280
+Námestie 1. Mája 480/1
+Kolárovice 457
+Kostolé námestie 1
+Kolta 1
+Námestie Generála Klapku 1
+Nádražná 97
+Komjatná 292
+Komoča 495
+Kollárova 318
+Korňa 517
+Hlavná 66
+Kostolná pri Dunaji 59
+Kostolné 1
+
+Trnava
+Košice - okolie
+Nové Zámky
+Nové Zámky
+Turčianske Teplice
+Nitra
+Galanta
+Revúca
+Rimavská Sobota
+Michalovce
+Levice
+Galanta
+Poltár
+Levice
+Nové Mesto nad Váhom
+Humenné
+Nové Zámky
+Komárno
+Nové Zámky
+Veľký Krtíš
+Nové Zámky
+Prievidza
+Prešov
+Košice - okolie
+Levice
+Kežmarok
+Nitra
+Martin
+Partizánske
+Snina
+Rimavská Sobota
+Komárno
+Detva
+Čadca
+Gelnica
+Nové Zámky
+Nové Mesto nad Váhom
+Poltár
+Bytča
+Komárno
+Nové Zámky
+Komárno
+Nové Zámky
+Ružomberok
+Nové Zámky
+Skalica
+Čadca
+Malacky
+Senec
+Myjava
+
+00332496
+00317390
+00690988
+00691046
+00690937
+00691054
+00690970
+00324345
+00324353
+00323179
+00316741
+00306045
+00321389
+00309630
+00310573
+00307149
+00330604
+00311715
+00312681
+00318876
+00306053
+00315338
+00306070
+00306061
+00324388
+00305529
+00331619
+00314072
+00328421
+00323187
+00325376
+00320781
+00320048
+00682187
+00329282
+00316750
+00320056
+00314595
+00322211
+00330655
+00304875
+00322245
+00309672
+00331643
+00324400
+00314099
+00314081
+00304883
+00317438
+00330671
+
+Košarovce
+Košeca
+Košice - Dargovských hrdinov
+Košice - Juh
+Košice - Staré Mesto
+Košice - Šaca
+Košice - Západ
+Košická Belá
+Košická Polianka
+Koškovce
+Košťany nad Turcom
+Košúty
+Kotešová
+Koválov
+Kovarce
+Kozárovce
+Krajná Poľana
+Krajné
+Krakovany
+Kráľ
+Kráľov Brod
+Kráľova Lehota
+Kráľová nad Váhom
+Kráľová pri Senci
+Kráľovce
+Kráľovičove Kračany
+Kráľovský Chlmec
+Krásno nad Kysucou
+Krásnohorské Podhradie
+Krásny Brod
+Krčava
+Kremnica
+Kriváň
+Križovany nad Dudváhom
+Krompachy
+Krpeľany
+Krupina
+Krušetnica
+Kružlov
+Kružlová
+Kuchyňa
+Kurima
+Kúty
+Kuzmice
+Kysak
+Kysucké Nové Mesto
+Kysucký Lieskovec
+Láb
+Ladce
+Ladomirová
+
+094 06
+018 64
+040 22
+040 79
+040 34
+040 15
+040 11
+044 65
+044 41
+067 12
+038 41
+925 09
+013 61
+90603
+956 15
+935 22
+090 05
+916 16
+922 02
+980 45
+925 41
+032 33
+925 91
+900 50
+044 44
+930 03
+077 13
+023 02
+049 41
+067 03
+072 51
+967 01
+962 04
+919 24
+053 42
+038 54
+963 01
+029 54
+086 04
+090 02
+900 52
+086 12
+908 01
+076 12
+044 81
+024 01
+023 34
+900 67
+018 63
+090 03
+
+Košarovce 172
+Hlavná ulica 100
+Dvorkinova 7
+Smetanova 4
+Hviezdoslavova 7
+Železiarenská 9
+Trieda SNP 39
+Košická Belá 54
+Košická Polianka 122
+Koškovce 11
+Košťany nad Turcom 64
+Košúty 20
+Kotešová 325
+Koválov 216
+Kovarce 461
+Hlavná 685
+Krajná Poľana 51
+Krajné 52
+Námestie sv. Mikuláša 406/4
+Kráľ 491
+Kráľov Brod 4
+Kráľova Lehota 39
+Kráľová nad Váhom 71
+Kráľová pri Senci 326
+Kráľovce 196
+Kráľovičove Kračany 109
+L. Kossutha 99
+1.mája 1255
+Hradná 156
+Krásny Brod 69
+Krčava 17
+Štefánikovo námestie 1.I
+Kriváň 441
+Križovany nad Dudváhom 1
+Námestie slobody 1
+Štefánikova 138
+Svätotrojičné námestie 4.IV
+Krušetnica 69
+Kružlov 141
+Kružlová 8
+Kuchyňa 220
+Klepár 1.I
+Námestie Radlinského 2
+Kuzmice 286
+Kysak 146
+Námestie slobody 94
+Kysucký Lieskovec 29
+Láb 503
+Záhradná 151
+Ladomirová 33
+
+Humenné
+Ilava
+Košice 3
+Košice 4
+Košice 1
+Košice 2
+Košice 2
+Košice - okolie
+Košice - okolie
+Humenné
+Martin
+Galanta
+Bytča
+Senica
+Topoľčany
+Levice
+Svidník
+Myjava
+Piešťany
+Rimavská Sobota
+Galanta
+Liptovský Mikuláš
+Šaľa
+Senec
+Košice - okolie
+Dunajská Streda
+Trebišov
+Čadca
+Rožňava
+Medzilaborce
+Sobrance
+Žiar nad Hronom
+Detva
+Trnava
+Spišská Nová Ves
+Martin
+Krupina
+Námestovo
+Bardejov
+Svidník
+Malacky
+Bardejov
+Senica
+Trebišov
+Košice - okolie
+Kysucké Nové Mesto
+Kysucké Nové Mesto
+Malacky
+Ilava
+Svidník
+
+00309681
+Lakšárska Nová Ves
+00316148
+Látky
+00317446
+Lazy pod Makytou
+00317454
+Lednica
+00317462
+Lednické Rovne
+00305553
+Lehnice
+00308153
+Lehota
+00318256
+Lehota pod Vtáčnikom
+00331686
+Leles
+00327344
+Lemešany
+00326321
+Lendak
+00312703
+Leopoldov
+22222222
+Lešť
+00329304
+Letanovce
+00307203
+Levice
+00329321
+Levoča
+00314617
+Liesek
+00321427
+Lietava
+00315362
+Likavka
+00327379
+Lipany
+00327379
+Lipany
+00327379_1 Lipany (CISMA)
+00316776
+Lipovec
+00315389
+Liptovská Kokava
+00315397
+Liptovská Lúžna
+00315401
+Liptovská Osada
+00315419
+Liptovská Sielnica
+00315435
+Liptovská Teplá
+00326330
+Liptovská Teplička
+00315478
+Liptovské Revúce
+00315745
+Liptovské Sliače
+00315494
+Liptovský Hrádok
+00315486
+Liptovský Ján
+00315524
+Liptovský Mikuláš
+00315559
+Lisková
+00320102
+Litava
+00314625
+Lokca
+00313556
+Lom nad Rimavicou
+00316172
+Lovinobaňa
+00304905
+Lozorno
+00309052
+Ľubá
+00315567
+Ľubeľa
+00328472
+Lubeník
+00313564
+Ľubietová
+00311731
+Lubina
+00315575
+Ľubochňa
+00330035
+Ľubotín
+00316181
+Lučenec
+00315583
+Lúčky
+00310689
+Ludanice
+
+908 76
+985 45
+020 55
+020 63
+020 61
+930 37
+951 36
+972 42
+076 84
+082 03
+059 07
+920 41
+962 45
+053 13
+934 01
+054 01
+027 12
+013 18
+034 95
+082 71
+082 71
+082 71
+038 61
+032 44
+034 72
+034 73
+032 23
+034 83
+059 40
+034 74
+034 84
+033 01
+032 03
+031 42
+034 81
+962 44
+029 51
+976 53
+985 54
+900 55
+943 53
+032 14
+049 18
+976 55
+916 12
+034 91
+065 41
+984 28
+034 82
+956 11
+
+Lakšárska Nová Ves 90
+Látky 36
+Lazy pod Makytou 157
+Lednica 232
+Námestie Slobody 32
+Lehnice 89
+Hlavná 16 dočasne 145
+Námestie SNP 33/1
+Hlavná 62
+Lemešany 186
+Obchodná 49
+Hlohovecká cesta 104/2
+Školská 21
+Slovenského raja 55
+Námestie hrdinov 1
+Námestie Majstra Pavla 4
+Michalovská časť 442
+Lietava 146
+Janovčíková 815
+Krivianska 1
+Krivianska 1
+Nám. Sv. Martina 39
+Hrabiny 290
+Stará 390
+Liptovská Lúžna 629
+Liptovská Osada 369
+Liptovská Sielnica 75
+Liptovská Teplá 142
+Štefana Garaja 398/16
+Liptovské Revúce 386
+Seč 635
+Hviezdoslavova 170
+Jána Kalinčiaka 39
+Štúrova 41
+Pod Chočom 113
+Litava 5
+Lokca 3
+Lom nad Rimavicou 13
+SNP 356/1
+Hlavná 1
+Ľubá 79
+Ľubeľa 346
+Lubeník 222
+Nám. V. Dunajského 1
+Lubina 56
+Ľubochňa 143
+Na rovni 302/12
+Novohradská 1
+Slobody 141
+SNP 448
+
+Senica
+Detva
+Púchov
+Púchov
+Púchov
+Dunajská Streda
+Nitra
+Prievidza
+Trebišov
+Prešov
+Kežmarok
+Hlohovec
+Zvolen
+Spišská Nová Ves
+Levice
+Levoča
+Tvrdošín
+Žilina
+Ružomberok
+Sabinov
+Sabinov
+Sabinov
+Martin
+Liptovský Mikuláš
+Ružomberok
+Ružomberok
+Liptovský Mikuláš
+Ružomberok
+Poprad
+Ružomberok
+Ružomberok
+Liptovský Mikuláš
+Liptovský Mikuláš
+Liptovský Mikuláš
+Ružomberok
+Krupina
+Námestovo
+Brezno
+Lučenec
+Malacky
+Nové Zámky
+Liptovský Mikuláš
+Revúca
+Banská Bystrica
+Nové Mesto nad Váhom
+Ružomberok
+Stará Ľubovňa
+Lučenec
+Ružomberok
+Topoľčany
+
+00311758
+00317489
+00321451
+34003517
+00317471
+00312738
+00312746
+00314129
+00324426
+00304913
+00322369
+00325465
+00309711
+00316211
+00304921
+00316784
+00309061
+00306550
+00329347
+00322377
+00304930
+00329355
+00316792
+00306568
+00324442
+00323233
+00311766
+00305600
+00309095
+00331759
+00325490
+00329380
+00330060
+00306576
+00308439
+00304956
+00306584
+00311782
+00319457
+00308269
+00317543
+00309117
+00324451
+00312789
+00311791
+00309737
+00304964
+00306096
+00316806
+00311804
+
+Lúka
+Lúky
+Lutiše
+Lužianky
+Lysá pod Makytou
+Madunice
+Majcichov
+Makov
+Malá Ida
+Malacky
+Malcov
+Malčice
+Malé Leváre
+Málinec
+Malinovo
+Malý Čepčín
+Maňa
+Marcelová
+Margecany
+Marhaň
+Marianka
+Markušovce
+Martin
+Martovce
+Medzev
+Medzilaborce
+Melčice-Lieskové
+Michal na Ostrove
+Michal nad Žitavou
+Michaľany
+Michalovce
+Mníšek nad Hnilcom
+Mníšek nad Popradom
+Moča
+Močenok
+Modra
+Modrany
+Modrová
+Modrý Kameň
+Mojmírovce
+Mojtín
+Mojzesovo
+Moldava nad Bodvou
+Moravany nad Váhom
+Moravské Lieskové
+Moravský Svätý Ján
+Most pri Bratislave
+Mostová
+Mošovce
+Motešice
+
+916 34
+020 53
+013 05
+951 41
+020 54
+922 42
+919 22
+023 56
+044 20
+901 01
+086 06
+072 06
+908 74
+985 26
+900 45
+038 45
+941 45
+946 32
+055 01
+086 45
+900 33
+053 21
+036 49
+946 61
+044 25
+068 01
+913 05
+930 35
+941 61
+076 14
+071 01
+055 64
+065 22
+946 37
+951 31
+900 01
+946 33
+916 35
+992 80
+951 15
+020 72
+941 04
+045 23
+922 21
+916 42
+908 71
+900 46
+925 07
+038 21
+913 26
+
+Lúka 205
+Lúky 105
+Lutiše 66
+Rastislavova 266
+Lysá pod Makytou 1
+P.O.Hviezdoslava 8/368
+Majcichov 606
+Makov 60
+Hlavná 3/11
+Radlinského 2751/1
+Malcov 130
+Hlavná 176
+Malé Leváre 177
+Málinec 474
+Ludvíka Svobodu 17
+Malý Čepčín 14
+Nám. M.R.Štefánika 1
+Nám.slobody 1199
+Obchodná 7
+Marhaň 36
+Školská 32
+Michalská 51
+Nám.S.H.Vajanského 1
+Martovce 14
+Štóska 6
+Mierová 326/4
+Melčice - Lieskové 119
+Michal na Ostrove 132
+Michal nad Žitavou 160
+Hlavná 108
+Námestie osloboditeľov 30
+Mníšek nad Hnilcom 292
+Mníšek nad Popradom 126
+Moča 168
+Sv. Gorazda 692
+Dukelská 38
+Hlavná 337
+Modrová 187
+Mariánske námestie 1
+Nám. Sv. Ladislava 7
+Mojtín 242
+Mojzesovo 494
+Školská 2
+Kostolecká 175/4
+Moravské Lieskové 657
+Moravský Svätý Ján 803
+Most pri Bratislave 97
+Mostová 120
+Kollárovo námestie 314
+Machnáčska 288
+
+Nové Mesto nad Váhom
+Púchov
+Žilina
+Nitra
+Púchov
+Hlohovec
+Trnava
+Čadca
+Košice - okolie
+Malacky
+Bardejov
+Michalovce
+Malacky
+Poltár
+Senec
+Turčianske Teplice
+Nové Zámky
+Komárno
+Gelnica
+Bardejov
+Malacky
+Spišská Nová Ves
+Martin
+Komárno
+Košice - okolie
+Medzilaborce
+Trenčín
+Dunajská Streda
+Nové Zámky
+Trebišov
+Michalovce
+Gelnica
+Stará Ľubovňa
+Komárno
+Šaľa
+Pezinok
+Komárno
+Nové Mesto nad Váhom
+Veľký Krtíš
+Nitra
+Púchov
+Nové Zámky
+Košice - okolie
+Piešťany
+Nové Mesto nad Váhom
+Senica
+Senec
+Galanta
+Turčianske Teplice
+Trenčín
+
+00328537
+00314668
+00309125
+00309745
+00316253
+00307297
+00313637
+00325511
+00329398
+00314676
+00316814
+00306100
+00318302
+00313645
+00311812
+00319465
+00314137
+00306606
+00308285
+00308307
+00318337
+00318345
+00318353
+00318329
+00314684
+00330809
+00322423
+00329410
+00332593
+00324507
+00330833
+00320897
+00311839
+00314145
+00307301
+00304981
+00317586
+00330086
+00308331
+00309141
+00318361
+00311863
+00308340
+00309150
+00331783
+00314692
+00307319
+00305626
+IČO
+00308358
+
+Muráň
+Mutné
+Mužla
+Myjava
+Mýtna
+Mýtne Ludany
+Mýto pod Ďumbierom
+Nacina Ves
+Nálepkovo
+Námestovo
+Necpaly
+Neded
+Nedožery-Brezany
+Nemecká
+Nemšová
+Nenince
+Nesluša
+Nesvady
+Neverice
+Nitra
+Nitrianske Pravno
+Nitrianske Rudno
+Nitrianske Sučany
+Nitrica
+Nižná
+Nižná Olšava
+Nižná Polianka
+Nižné Repaše
+Nižný Hrabovec
+Nižný Klátov
+Nižný Mirošov
+Nová Baňa
+Nová Bošáca
+Nová Bystrica
+Nová Dedina
+Nová Dedinka
+Nová Dubnica
+Nová Ľubovňa
+Nová Ves nad Žitavou
+Nová Vieska
+Nováky
+Nové Mesto nad Váhom
+Nové Sady
+Nové Zámky
+Novosad
+Novoť
+Nový Tekov
+Nový Život
+Obec
+Obyce
+
+049 01
+029 63
+943 52
+907 14
+985 53
+935 56
+976 44
+072 21
+053 33
+029 01
+038 12
+925 85
+972 12
+976 97
+914 41
+991 26
+023 41
+946 51
+951 72
+950 06
+972 13
+972 26
+972 21
+972 22
+027 43
+090 32
+086 36
+053 71
+094 21
+044 12
+090 11
+968 01
+913 08
+023 05
+935 25
+900 29
+018 51
+065 11
+951 51
+943 41
+972 71
+951 01
+951 24
+940 35
+076 02
+029 55
+935 33
+930 38
+PSČ
+951 95
+
+Muráň 329
+Mútne 194
+Mužla 711
+nám. M.R.Štefánika 4
+Mýtna 47
+Kalvínske námestie 1
+Mýto pod Ďumbierom 64
+Nacina Ves 224
+Sredný riadok 384
+Cyrila a Metoda 329/6
+Necpaly 168
+Hlavná 844
+Družstevná 1
+Hronská 37
+Janka Palu 2/3
+Hlavná 238
+Nesluša 978
+Obchodná 23/76
+Hlavná 119
+Štefánikova 60
+Námestie SNP 1/1
+Hlavná 1/82
+Nitrianske Sučany 263
+Nitrica 489
+Nová Doba 506
+Nižná Oľšava 100
+Nižná Polianka 47
+Nižné Repáše 97
+Nižný Hrabovec 407
+Hlavná 1/1
+Nižný Mirošov 100
+Námestie slobody 1
+Nová Bošáca 79
+Nová Bystrica 657
+Nová Dedina 125
+Mierová 11
+Trenčianska 45/41
+Nová Ľubovňa 102
+Hlavná 76
+Nová Vieska 294
+Námestie SNP 349/10
+Československej armády 1
+Nové Sady 177
+Hlavné námestie 10
+Hlavná 144/47
+Novoť 285
+Nový Tekov 226
+Eliášovce 55
+Ulica a číslo
+Cintorínska 229
+
+Revúca
+Námestovo
+Nové Zámky
+Myjava
+Lučenec
+Levice
+Brezno
+Michalovce
+Gelnica
+Námestovo
+Martin
+Šaľa
+Prievidza
+Brezno
+Trenčín
+Veľký Krtíš
+Kysucké Nové Mesto
+Komárno
+Zlaté Moravce
+Nitra
+Prievidza
+Prievidza
+Prievidza
+Prievidza
+Tvrdošín
+Stropkov
+Bardejov
+Levoča
+Vranov nad Topľou
+Košice - okolie
+Svidník
+Žarnovica
+Nové Mesto nad Váhom
+Čadca
+Levice
+Senec
+Ilava
+Stará Ľubovňa
+Nitra
+Nové Zámky
+Prievidza
+Nové Mesto nad Váhom
+Nitra
+Nové Zámky
+Trebišov
+Námestovo
+Levice
+Dunajská Streda
+Okres
+Zlaté Moravce
+
+00320153
+00305634
+00323322
+00314153
+00305642
+00306622
+00330868
+00314161
+00323331
+00314722
+00314749
+00650498
+00314731
+00330108
+00318396
+00312827
+00314170
+00318965
+00305685
+00309176
+00325571
+00323381
+00317594
+00331813
+00314781
+00315656
+00310905
+00312851
+00306126
+00325589
+00323403
+00327590
+00305014
+00309770
+00327603
+00321541
+00305022
+00612031
+00307360
+00307378
+00309788
+00309796
+00309800
+00305049
+00330124
+00328642
+00317608
+00320170
+00311910
+00313688
+
+Očová
+Ohrady
+Ohradzany
+Ochodnica
+Okoč
+Okoličná na Ostrove
+Okrúhle
+Olešná
+Oľka
+Oravská Lesná
+Oravská Polhora
+Oravské Veselé
+Oravský Podzámok
+Orlov
+Oslany
+Ostrov
+Oščadnica
+Ožďany
+Padáň
+Palárikovo
+Palín
+Papín
+Papradno
+Parchovany
+Párnica
+Partizánska Ľupča
+Partizánske
+Pastuchov
+Pata
+Pavlovce nad Uhom
+Pčoliné
+Pečovská Nová Ves
+Pernek
+Petrová Ves
+Petrovany
+Petrovice
+Pezinok
+Piešťany
+Plášťovce
+Plavé Vozokany
+Plavecké Podhradie
+Plavecký Mikuláš
+Plavecký Peter
+Plavecký Štvrtok
+Plavnica
+Plešivec
+Plevník-Drienové
+Pliešovce
+Pobedim
+Podbrezová
+
+962 23
+930 12
+067 22
+023 35
+930 28
+946 13
+090 42
+023 52
+067 04
+029 57
+029 47
+029 62
+027 41
+065 43
+972 47
+922 01
+023 01
+980 11
+929 01
+941 11
+072 13
+067 33
+018 13
+076 62
+027 52
+032 15
+958 01
+920 63
+925 53
+072 14
+067 35
+082 56
+900 53
+908 44
+082 53
+013 53
+902 14
+921 45
+935 82
+935 69
+906 36
+906 35
+906 35
+900 68
+065 45
+049 11
+018 26
+962 63
+916 23
+976 81
+
+SNP 33/110
+Ohrady 267
+Ohradzany 164
+Ochodnica 121
+Hlavná 833/57
+Hlavná 68
+Okrúhle 131
+U Rovňanov 493
+Oľka 174
+Miestna časť 291
+Oravská Polhora 454
+Oravské Veselé 374
+Oravský Podzámok 61
+Orlov 119
+Námestie slobody 3
+Ostrov 315
+Námestie M. Bernáta 745
+Ožďany 64
+Padáň 289
+Hlavná 82
+Palín 233
+Papín 148
+Papradno 315
+Parchovany 470
+Párnica 116
+Partizánska Ľupča 417
+Námestie SNP 212/4
+Pastuchov 247
+Hlohovecká 103
+Pavlovce nad Uhom 17
+Pčoliné 121
+Hlavná 33
+Pernek 48
+Petrova Ves 53
+Petrovany 317
+Petrovice 80
+Radničné námestie 7
+Námestie SNP 3
+Plášťovce 345
+Plavé Vozokany 115
+Plavecké Podhradie 34
+Plavecký Mikuláš 307
+Plavecký Peter 137
+Plavecký Štvrtok 172
+Plavnica 121
+Čsl.armády 1
+Plevník-Drienové 255
+Hviezdoslavova 1
+Pobedim 435
+Sládkovičova 6
+
+Zvolen
+Dunajská Streda
+Humenné
+Kysucké Nové Mesto
+Dunajská Streda
+Komárno
+Svidník
+Čadca
+Medzilaborce
+Námestovo
+Námestovo
+Námestovo
+Dolný Kubín
+Stará Ľubovňa
+Prievidza
+Piešťany
+Čadca
+Rimavská Sobota
+Dunajská Streda
+Nové Zámky
+Michalovce
+Humenné
+Považská Bystrica
+Trebišov
+Dolný Kubín
+Liptovský Mikuláš
+Partizánske
+Hlohovec
+Galanta
+Michalovce
+Snina
+Sabinov
+Malacky
+Skalica
+Prešov
+Bytča
+Pezinok
+Piešťany
+Levice
+Levice
+Malacky
+Malacky
+Senica
+Malacky
+Stará Ľubovňa
+Rožňava
+Považská Bystrica
+Zvolen
+Nové Mesto nad Váhom
+Brezno
+
+00309192
+00325635
+00316831
+00316318
+00310930
+00311928
+00330132
+00313696
+00308382
+00313700
+00307394
+00313726
+00316342
+00313734
+00326470
+00324639
+00309834
+00325660
+00311944
+00317667
+00309206
+00319511
+00329517
+00310964
+00317691
+00313751
+00321567
+00320943
+00310999
+00327646
+00306649
+00316849
+00315711
+00309869
+00309885
+00318442
+00317721
+00317730
+00317748
+00307416
+00306134
+00314838
+00314846
+00311014
+00309907
+00306657
+00323454
+00316369
+00311022
+00321575
+
+Podhájska
+Podhoroď
+Podhradie
+Podkriváň
+Podlužany
+Podolie
+Podolínec
+Pohorelá
+Pohranice
+Pohronská Polhora
+Pohronský Ruskov
+Polomka
+Poltár
+Poniky
+Poprad
+Poproč
+Popudinské Močidľany
+Porúbka
+Považany
+Považská Bystrica
+Pozba
+Pôtor
+Prakovce
+Prašice
+Prečín
+Predajná
+Predmier
+Prenčov
+Preseľany
+Prešov
+Pribeta
+Príbovce
+Pribylina
+Prietrž
+Prievaly
+Prievidza
+Pruské
+Pružina
+Púchov
+Pukanec
+Pusté Úľany
+Rabča
+Rabčice
+Radošina
+Radošovce
+Radvaň nad Dunajom
+Radvaň nad Laborcom
+Radzovce
+Rajčany
+Rajec
+
+941 48
+072 64
+038 52
+985 51
+956 52
+916 22
+065 03
+976 69
+951 02
+976 56
+935 62
+976 66
+987 01
+976 33
+058 42
+044 24
+908 61
+072 61
+916 26
+017 13
+941 51
+991 03
+055 62
+956 22
+018 15
+976 63
+013 51
+969 73
+956 12
+080 68
+946 55
+038 42
+032 42
+906 11
+906 34
+971 01
+018 52
+018 22
+020 01
+935 05
+925 28
+029 44
+029 45
+956 05
+908 63
+946 38
+067 01
+985 58
+956 32
+015 01
+
+Podhájska 2
+Podhoroď 112
+1. mája 194/61
+Podkriváň 87
+Podlužany 72
+Štefánikova 566
+Námestie Mariánske 3
+Nová 392
+Pohranice 185
+Hlavná 62
+Hlavná 74
+Osloboditeľov 12
+Železnična 1
+Malá Stráňa 32
+Nábrežie Jána Pavla II. 2802/3
+Školská 632/2
+Popudinské Močidľany 56
+Porúbka 151
+Považany 187
+Centrum 2/3
+Pozba 162
+Pôtor 75
+SNP 333
+1.mája 142
+Prečín 304
+Námestie J.Pejku 67
+Bajzova 55
+Prenčov 300
+Preseľany 77
+Hlavná 73
+Hlavná 113
+Príbovce 206
+Pribylina 384
+Prietrž 126
+Prievaly 189
+Námestie slobody 14
+Pod kostolom 1
+Pružina 415
+Štefánikova 821/21
+Námestie mieru 11
+Hlavná 111/66
+Hlavná 426
+Rabčice 196
+Školská 416
+Radošovce 188
+Radvaň nad Dunajom 58
+Radvaň nad Laborcom 76
+Radzovce 506
+Rajčany 129
+Námestie SNP 2/2
+
+Nové Zámky
+Sobrance
+Martin
+Detva
+Bánovce nad Bebravou
+Nové Mesto nad Váhom
+Stará Ľubovňa
+Brezno
+Nitra
+Brezno
+Levice
+Brezno
+Poltár
+Banská Bystrica
+Poprad
+Košice - okolie
+Skalica
+Sobrance
+Nové Mesto nad Váhom
+Považská Bystrica
+Nové Zámky
+Veľký Krtíš
+Gelnica
+Topoľčany
+Považská Bystrica
+Brezno
+Bytča
+Banská Štiavnica
+Topoľčany
+Prešov
+Komárno
+Martin
+Liptovský Mikuláš
+Senica
+Senica
+Prievidza
+Ilava
+Považská Bystrica
+Púchov
+Levice
+Galanta
+Námestovo
+Námestovo
+Topoľčany
+Skalica
+Komárno
+Medzilaborce
+Lučenec
+Topoľčany
+Žilina
+
+00321583
+00321591
+00314234
+00316377
+00322521
+00318990
+00306142
+00325716
+00328693
+00319015
+00319023
+00319031
+00308404
+00305715
+00309923
+00324655
+00328758
+00309231
+00314251
+00329533
+00332780
+00324671
+00312941
+00315737
+00311049
+00307424
+00320196
+00327735
+00309249
+00307432
+00305693
+00320218
+00320226
+00331899
+00332828
+00327743
+00313807
+00306151
+00309257
+00324698
+00305065
+00309974
+00319546
+00320234
+00306169
+00309265
+00328812
+00311057
+00309982
+00314285
+
+Rajecká Lesná
+Rajecké Teplice
+Raková
+Rapovce
+Raslavice
+Ratková
+Reca
+Remetské Hámre
+Revúca
+Rimavská Baňa
+Rimavská Seč
+Rimavská Sobota
+Rišňovce
+Rohovce
+Rohožník
+Rozhanovce
+Rožňava
+Rúbaň
+Rudina
+Rudňany
+Ruská Poruba
+Ruskov
+Ružindol
+Ružomberok
+Rybany
+Rybník
+Rykynčice
+Sabinov
+Salka
+Santovka
+Sap
+Sása
+Sebechleby
+Sečovce
+Sečovská Polianka
+Sedlice
+Selce
+Selice
+Semerovo
+Seňa
+Senec
+Senica
+Senné
+Senohrad
+Sereď
+Sikenička
+Sirk
+Skačany
+Skalica
+Skalité
+
+013 15
+013 13
+023 51
+985 31
+086 41
+982 65
+925 26
+072 41
+050 01
+980 53
+980 42
+979 01
+951 21
+930 30
+906 38
+044 42
+048 01
+941 36
+023 31
+053 23
+094 08
+044 19
+919 61
+034 16
+956 36
+935 23
+962 55
+083 01
+943 61
+935 87
+930 06
+962 62
+962 66
+078 01
+094 14
+082 43
+976 11
+925 72
+941 32
+044 58
+903 01
+905 01
+99101
+962 43
+926 01
+943 59
+049 64
+958 53
+909 01
+023 14
+
+Mariánske námestie 81
+Námestie SNP 1/29
+Ústredie 140
+Hlavná 99
+Hlavná 154
+Ratková 1
+Reca 24
+Remetské Hámre 32
+Námestie slobody 13/17
+Hlavná 168
+Malý rad 294
+Svätoplukova 9
+Rišňovce 259
+Rohovce 164
+Školské námestie 1
+ul. SNP 48
+Šafárikova 29
+Rúbaň 27
+Rudina 442
+Rudňany 234
+Ruská Poruba 93
+Slančíska 94
+Ružindol 130
+Námestie A.Hlinku 1
+Rybany 415
+Hlavná 2
+Rykynčice 60
+Námestie slobody 100
+Salka 61
+Parková 2
+Sap 48
+Námestie SNP 329/1
+Sebechleby 1
+Nám. sv. Cyrila a Metoda 43/27
+Hlavná 132
+Sedlice 176
+Selčianska cesta 132
+Sovietskej armády 1131
+Semerovo 345
+Seňa 200
+Mierové námestie 8
+Štefánikova 56
+Senné 81
+Senohrad 151
+Námestie Republiky 1176/10
+Sikenička 210
+Sirk 71
+Námestie SNP 451
+Námestie slobody 10
+Skalité 598
+
+Žilina
+Žilina
+Čadca
+Lučenec
+Bardejov
+Revúca
+Senec
+Sobrance
+Revúca
+Rimavská Sobota
+Rimavská Sobota
+Rimavská Sobota
+Nitra
+Dunajská Streda
+Malacky
+Košice - okolie
+Rožňava
+Nové Zámky
+Kysucké Nové Mesto
+Spišská Nová Ves
+Humenné
+Košice - okolie
+Trnava
+Ružomberok
+Bánovce nad Bebravou
+Levice
+Krupina
+Sabinov
+Nové Zámky
+Levice
+Dunajská Streda
+Zvolen
+Krupina
+Trebišov
+Vranov nad Topľou
+Prešov
+Banská Bystrica
+Šaľa
+Nové Zámky
+Košice - okolie
+Senec
+Senica
+Veľký Krtíš
+Krupina
+Galanta
+Nové Zámky
+Revúca
+Partizánske
+Skalica
+Čadca
+
+00319554
+00316881
+00316890
+00308421
+00306177
+00324728
+00311073
+00328847
+00308447
+00320277
+00332852
+00313823
+00326500
+00319562
+00316911
+00305073
+00312983
+00329576
+00323560
+00311987
+00310018
+00325791
+00306665
+00332861
+00311081
+00310026
+00331945
+00326518
+00329614
+00326526
+00326542
+00326551
+00329622
+00329657
+00329606
+00329631
+00323578
+00315761
+00314307
+00320285
+00330167
+00312002
+00313831
+00307483
+00314293
+00325813
+00321648
+00331970
+00309273
+00331007
+
+Sklabiná
+Sklabiňa
+Sklené
+Skýcov
+Sládkovičovo
+Slanec
+Slatina nad Bebravou
+Slavošovce
+Sľažany
+Sliač
+Slovenská Kajňa
+Slovenská Ľupča
+Slovenská Ves
+Slovenské Ďarmoty
+Slovenské Pravno
+Slovenský Grob
+Smolenice
+Smolník
+Snina
+Soblahov
+Sobotište
+Sobrance
+Sokolce
+Soľ
+Solčany
+Sološnica
+Somotor
+Spišská Belá
+Spišská Nová Ves
+Spišská Stará Ves
+Spišské Bystré
+Spišské Hanušovce
+Spišské Podhradie
+Spišské Vlachy
+Spišský Hrušov
+Spišský Štvrtok
+Stakčín
+Stankovany
+Stará Bystrica
+Stará Huta
+Stará Ľubovňa
+Stará Turá
+Staré Hory
+Starý Tekov
+Staškov
+Strážske
+Strečno
+Streda nad Bodrogom
+Strekov
+Stropkov
+
+991 05
+038 03
+038 47
+951 85
+925 21
+044 17
+956 53
+049 36
+951 71
+962 31
+094 02
+976 13
+059 02
+991 07
+038 22
+900 26
+919 04
+055 66
+069 01
+913 38
+906 05
+073 42
+946 17
+094 35
+956 17
+906 37
+076 35
+059 01
+052 80
+061 01
+059 18
+059 04
+053 04
+053 61
+053 63
+053 14
+067 61
+034 92
+023 04
+962 25
+064 01
+916 01
+976 02
+935 26
+023 53
+072 22
+013 24
+076 31
+941 37
+091 01
+
+Skľabiná 211
+Sklabiňa 108
+Sklené 97
+Školská 294
+Fučíkova 329
+Hlavná 55/114
+Slatina nad Bebravou 17
+Slavošovce 113
+Dlhá 90
+Letecká 1
+Slovenská Kajňa 4
+Námestie SNP 13
+Slovenská Ves 50
+Slovenské Ďarmoty 99
+Slovenské Pravno 123
+Hlavná 132
+SNP 52
+Smolník 1
+Strojárska 2060
+Soblahov 366
+Sobotište 11
+Štefánikova 23
+Hlavná 63
+Soľ 161
+Hviezdoslavova 50
+Sološnica 527
+Obchodná 39/7
+Petzvalova 18
+Radničné námestie 1
+Štúrova 228
+Michalská 4
+Spišské Hanušovce 97
+Mariánske nám. 37
+ul. SNP 34
+Spišský Hrušov 216
+Tatranská 4
+Čsl. armády 140
+Stankovany 133
+Stará Bystrica 537
+Stará Huta 54
+Obchodná 1
+SNP 1/2
+Staré Hory 317
+Tekovská 1
+Jozefa Krónera 588
+Námestie A. Dubčeka 300
+Sokolská 487
+Hlavná 127/217
+Hlavná 53
+Hlavná 38/2
+
+Veľký Krtíš
+Martin
+Turčianske Teplice
+Zlaté Moravce
+Galanta
+Košice - okolie
+Bánovce nad Bebravou
+Rožňava
+Zlaté Moravce
+Zvolen
+Vranov nad Topľou
+Banská Bystrica
+Kežmarok
+Veľký Krtíš
+Turčianske Teplice
+Pezinok
+Trnava
+Gelnica
+Snina
+Trenčín
+Senica
+Sobrance
+Komárno
+Vranov nad Topľou
+Topoľčany
+Malacky
+Trebišov
+Kežmarok
+Spišská Nová Ves
+Kežmarok
+Poprad
+Kežmarok
+Levoča
+Spišská Nová Ves
+Spišská Nová Ves
+Levoča
+Snina
+Ružomberok
+Čadca
+Detva
+Stará Ľubovňa
+Nové Mesto nad Váhom
+Banská Bystrica
+Levice
+Čadca
+Michalovce
+Žilina
+Trebišov
+Nové Zámky
+Stropkov
+
+00310042
+00305081
+00316938
+00314871
+00313009
+00305090
+00321656
+00320471
+00304832
+00315508
+00306436
+00331023
+00327760
+00312011
+00326607
+00309281
+00314323
+00307513
+00310051
+00306185
+00307505
+00305723
+00327786
+00327794
+00327808
+00307521
+00310069
+00305103
+00316423
+00306193
+00327832
+00311138
+00306207
+00313033
+00310077
+00321028
+00321672
+00328871
+00326615
+00309303
+00305731
+00313866
+00326437
+00309311
+00313068
+00329681
+00315788
+00307548
+00313874
+00319147
+
+Studienka
+Stupava
+Sučany
+Suchá Hora
+Suchá nad Parnou
+Suchohrad
+Súľov-Hradná
+Svätý Anton
+Svätý Jur
+Svätý Kríž
+Svätý Peter
+Svidník
+Svinia
+Svinná
+Svit
+Svodín
+Svrčinovec
+Šahy
+Šajdíkove Humence
+Šaľa
+Šalov
+Šamorín
+Šarišské Bohdanovce
+Šarišské Dravce
+Šarišské Michaľany
+Šarovce
+Šaštín-Stráže
+Šenkvice
+Šíd
+Šintava
+Široké
+Šišov
+Šoporňa
+Špačince
+Štefanov
+Štiavnické Bane
+Štiavnik
+Štítnik
+Štrba
+Štúrovo
+Štvrtok na Ostrove
+Šumiac
+Šuňava
+Šurany
+Šúrovce
+Švedlár
+Švošov
+Tekovské Lužany
+Telgárt
+Teplý Vrch
+
+908 75
+900 31
+038 52
+027 13
+919 01
+900 64
+013 52
+969 72
+900 21
+032 11
+946 57
+089 01
+082 32
+913 24
+059 21
+943 54
+023 12
+936 01
+906 07
+927 01
+935 71
+931 01
+082 05
+082 73
+082 22
+935 52
+908 41
+900 81
+986 01
+925 51
+082 37
+956 38
+925 52
+919 51
+906 45
+969 81
+013 55
+049 32
+059 38
+943 01
+930 40
+976 71
+059 39
+942 01
+919 25
+053 34
+034 91
+935 41
+976 73
+980 23
+
+Studienka 364
+Hlavná 1
+Nám.SNP 8
+Suchá Hora 252
+Suchá nad Parnou 68
+Suchohrad 140
+Súľov-Hradná 62
+Svätý Anton 34
+Prostredná 29
+Svätý Kríž 152
+Hlavná 2
+Sovietských hrdinov 200/33
+Hlavná 87/10
+Svinná 141
+Hviezdoslavova 269/33
+Hlavná 1117
+Svrčinovec 858
+Hlavné námestie 1
+Šajdíkove Humence 48
+Námestie Sv. Trojice 7
+Šalov 16
+Hlavná 37
+Šarišské Bohdanovce 87
+Šarišské Dravce 109
+kpt.Nálepku 18
+Šarovce 128
+Alej 549
+Nám. Gabriela Kolinoviča 5
+Šíd 37
+Šintava 244
+Široké 118
+Šišov 63
+Šoporňa 1179
+Hlavná 183/16
+Štefanov 347
+Štiavnické Bane 1
+Štiavnik 764
+Námestie 1.mája 167
+Hlavná 188/67
+Nám. Slobody 1
+Štvrtok na Ostrove 454
+Jegorovova 414
+Trojičné námestie 255/3
+Námestie hrdinov 1
+Nová 5
+Švedlár 87
+Školská 70
+SNP 43
+Telgárt 70
+Teplý Vrch 80
+
+Malacky
+Malacky
+Martin
+Tvrdošín
+Trnava
+Malacky
+Bytča
+Banská Štiavnica
+Pezinok
+Liptovský Mikuláš
+Komárno
+Svidník
+Prešov
+Trenčín
+Poprad
+Nové Zámky
+Čadca
+Levice
+Senica
+Šaľa
+Levice
+Dunajská Streda
+Prešov
+Sabinov
+Sabinov
+Levice
+Senica
+Pezinok
+Lučenec
+Galanta
+Prešov
+Bánovce nad Bebravou
+Galanta
+Trnava
+Senica
+Banská Štiavnica
+Bytča
+Rožňava
+Poprad
+Nové Zámky
+Dunajská Streda
+Brezno
+Poprad
+Nové Zámky
+Trnava
+Gelnica
+Ružomberok
+Levice
+Brezno
+Rimavská Sobota
+
+00321699
+00327867
+00308528
+00306215
+00319155
+00307581
+00306223
+00305120
+00316474
+00311162
+00308536
+00306231
+00305740
+00323659
+00319091
+00332887
+00306690
+00313092
+00309320
+00306681
+00331996
+00312045
+00312053
+00312070
+00312100
+00312088
+00312037
+00305766
+00325899
+00313114
+00321052
+00305774
+00306240
+00314897
+00305782
+00306258
+00313122
+00327905
+00316962
+00331104
+00317012
+00316997
+00316679
+00317004
+00691313
+00314331
+00314901
+00309338
+00323675
+00325937
+
+Terchová
+Terňa
+Tesárske Mlyňany
+Tešedíkovo
+Tisovec
+Tlmače
+Tomášikovo
+Tomášov
+Tomášovce
+Topoľčany
+Topoľčianky
+Topoľnica
+Topoľníky
+Topoľovka
+Tornaľa
+Tovarné
+Tôň
+Trakovice
+Trávnica
+Trávnik
+Trebišov
+Trenčianska Teplá
+Trenčianska Turná
+Trenčianske Jastrabie
+Trenčianske Stankovce
+Trenčianske Teplice
+Trenčín
+Trhová Hradská
+Trhovište
+Trnava
+Trnavá Hora
+Trnávka
+Trnovec nad Váhom
+Trstená
+Trstená na Ostrove
+Trstice
+Trstín
+Tuhrina
+Turany
+Turany nad Ondavou
+Turček
+Turčianska Štiavnička
+Turčianske Jaseno
+Turčianske Teplice
+Turňa nad Bodvou
+Turzovka
+Tvrdošín
+Tvrdošovce
+Ubľa
+Úbrež
+
+013 06
+082 67
+951 76
+925 82
+980 61
+935 21
+925 04
+900 44
+985 56
+955 01
+951 93
+925 92
+930 11
+067 45
+982 18
+094 01
+946 15
+919 33
+941 46
+946 18
+075 25
+914 01
+913 21
+913 22
+913 11
+914 51
+911 64
+930 13
+072 04
+917 71
+966 11
+930 32
+925 71
+028 01
+930 09
+925 42
+919 05
+082 07
+038 53
+090 33
+038 48
+038 51
+038 02
+039 01
+044 02
+023 54
+027 44
+941 10
+067 73
+072 42
+
+Sv. Cyrila a Metoda 96
+Hlavná 119/58
+Hlavná 647
+Žihárecká 860
+Námestie Dr. V. Clementisa 1
+Námestie odborárov 10
+Hlavná 319
+1. mája 5
+Partizánska 132
+Nám. M.R.Štefánika 1
+Hlavná 114
+Topoľnica 13
+Hlavná 126
+Topoľovka 194
+Mierová 14
+Tovarné 4
+Bratislavská cesta 132/8
+Trakovice 38
+Trávnica 65
+Trávnik 50
+M.R.Štefánika 862/204
+M.R.Štefánika 376/30
+Bánovská 86
+Trenčianske Jastrabie 102
+Trenčianske Stankovce 362
+M.R.Štefánika 613/4
+Mierové nám. 2
+Farský rad 488/1
+Trhovište 121
+Trhová 3 0
+Trnavá Hora 229
+Trnávka 168
+Trnovec nad Váhom 587
+Bernolákova 96/8
+Trstená na Ostrove 20
+Trstice 667
+Trstín 95
+Tuhrina 70
+Osloboditeľov 83
+Turany nad Ondavou 100
+Turček 123
+Jána Kostru 92/76
+Turčianske Jaseno 24
+Partizánska 1
+Moldavská cesta 419 419/49
+Stred 178
+Trojičné námestie 185
+Novozámocká 56
+Ubľa 368
+Úbrež 169
+
+Žilina
+Prešov
+Zlaté Moravce
+Šaľa
+Rimavská Sobota
+Levice
+Galanta
+Senec
+Lučenec
+Topoľčany
+Zlaté Moravce
+Galanta
+Dunajská Streda
+Humenné
+Revúca
+Vranov nad Topľou
+Komárno
+Hlohovec
+Nové Zámky
+Komárno
+Trebišov
+Trenčín
+Trenčín
+Trenčín
+Trenčín
+Trenčín
+Trenčín
+Dunajská Streda
+Michalovce
+Trnava
+Žiar nad Hronom
+Dunajská Streda
+Šaľa
+Tvrdošín
+Dunajská Streda
+Galanta
+Trnava
+Prešov
+Martin
+Stropkov
+Turčianske Teplice
+Martin
+Martin
+Turčianske Teplice
+Košice - okolie
+Čadca
+Tvrdošín
+Nové Zámky
+Snina
+Sobrance
+
+00323683
+00317853
+00316504
+00311201
+00800236
+00323691
+00310107
+00306266
+00324850
+00313904
+00318531
+00317021
+00321711
+00315842
+00319171
+00314960
+00319619
+00324868
+00321061
+00326666
+00306274
+00316539
+00319627
+00305804
+00310417
+00332038
+00306703
+00313149
+00310115
+00309354
+00307637
+00325945
+00311286
+00321737
+00332071
+00311294
+00306282
+00308595
+00305146
+00319198
+00308609
+00307645
+00306291
+00332089
+00311308
+00319651
+00309109
+00330248
+00305332
+00326674
+
+Udavské
+Udiča
+Uhorské
+Uhrovec
+Úľany nad Žitavou
+Ulič
+Unin
+Váhovce
+Valaliky
+Valaská
+Valaská Belá
+Valča
+Varín
+Važec
+Včelince
+Veličná
+Veľká Čalomija
+Veľká Ida
+Veľká Lehota
+Veľká Lomnica
+Veľká Mača
+Veľká nad Ipľom
+Veľká Ves nad Ipľom
+Veľké Blahovo
+Veľké Držkovce
+Veľké Kapušany
+Veľké Kosihy
+Veľké Kostoľany
+Veľké Leváre
+Veľké Lovce
+Veľké Ludince
+Veľké Revištia
+Veľké Ripňany
+Veľké Rovné
+Veľké Trakany
+Veľké Uherce
+Veľké Úľany
+Veľké Zálužie
+Veľký Biel
+Veľký Blh
+Veľký Cetín
+Veľký Ďur
+Veľký Grob
+Veľký Horeš
+Veľký Klíž
+Veľký Krtíš
+Veľký Kýr
+Veľký Lipník
+Veľký Meder
+Veľký Slavkov
+
+067 31
+018 01
+985 25
+956 41
+941 03
+067 67
+908 46
+925 62
+044 13
+976 46
+972 28
+038 85
+013 03
+032 61
+980 50
+027 54
+991 09
+044 55
+966 41
+059 52
+925 32
+985 32
+991 10
+930 01
+956 54
+079 01
+946 21
+922 07
+908 73
+941 42
+935 65
+072 43
+956 07
+013 62
+076 42
+958 41
+925 22
+951 35
+900 24
+980 22
+951 05
+935 34
+925 27
+076 52
+958 45
+990 01
+941 07
+065 33
+932 01
+059 91
+
+Udavské 30
+Udiča 302
+Uhorské 8
+SNP 86/7
+Komenského 51
+Ulič 89
+Unín 332
+Váhovce 329
+Poľná 8
+Námestie 1.mája 460/8
+Valaská Belá 1
+Valča 375
+Nám. sv. Floriána 1
+Na Harte 19
+Včelince 134
+Veličná 164
+Veľká Čalomija 214
+Veľká Ida 42
+Veľká Lehota 50
+Tatranská 175/23
+Veľká Mača 137
+Veľká nad Ipľom 86
+Hlavná 124
+Hlavná 72
+Veľké Držkovce 212
+L.N.Tolstého 1
+Hlavná 125
+M. R. Štefánika 800/1
+Štefániková 747
+Veľké Lovce 99
+Veľké Ludince 136
+Veľké Revištia 25
+Poštová 461
+Veľké Rovné 1621
+Rákocziho 419
+Veľké Uherce 360
+Hlavná 578
+Obecná 955
+Železničná 76
+Družstevná 354
+Kostolná 1
+Hlavná 80
+Veľký Grob 272
+Družstevná 333
+Veľký Klíž 156
+J.A.Komenského 3
+Nám. Sv. Jána 1
+Veľký Lipník 283
+Komárňanská 207/9
+Kapitána Morávku 118
+
+Humenné
+Považská Bystrica
+Poltár
+Bánovce nad Bebravou
+Nové Zámky
+Snina
+Skalica
+Galanta
+Košice - okolie
+Brezno
+Prievidza
+Martin
+Žilina
+Liptovský Mikuláš
+Rimavská Sobota
+Dolný Kubín
+Veľký Krtíš
+Košice - okolie
+Žarnovica
+Kežmarok
+Galanta
+Lučenec
+Veľký Krtíš
+Dunajská Streda
+Bánovce nad Bebravou
+Michalovce
+Komárno
+Piešťany
+Malacky
+Nové Zámky
+Levice
+Sobrance
+Topoľčany
+Bytča
+Trebišov
+Partizánske
+Galanta
+Nitra
+Senec
+Rimavská Sobota
+Nitra
+Levice
+Galanta
+Trebišov
+Partizánske
+Veľký Krtíš
+Nové Zámky
+Stará Ľubovňa
+Dunajská Streda
+Poprad
+
+00327972
+Veľký Šariš
+00313165
+Veselé
+00320382
+Vígľaš
+00320391
+Vígľašská Huta-Kalinka
+00319678
+Vinica
+00305154
+Viničné
+00325953
+Vinné
+00308625
+Vinodol
+00305162
+Vinosady
+00305171
+Vištuk
+00306312
+Vlčany
+00682209
+Vlčkovce
+00313181
+Voderady
+00332127
+Vojany
+00305812
+Vojka nad Dunajom
+00306321
+Vozokany
+00308641
+Vráble
+00305821
+Vrakúň
+00332933
+Vranov nad Topľou
+00332933_1 Vranov nad Topľou (CISMA)
+00326721
+Vrbov
+00310140
+Vrbovce
+00313190
+Vrbové
+00319686
+Vrbovka
+00647209
+Vrútky
+00308650
+Výčapy-Opatovce
+00321109
+Vyhne
+00315893
+Východná
+00323764
+Výrava
+00314340
+Vysoká nad Kysucou
+00305197
+Vysoká pri Morave
+00326585
+Vysoké Tatry
+00307661
+Vyškovce nad Ipľom
+00332950
+Vyšný Žipov
+44444444
+Záhorie
+00305219
+Záhorská Ves
+00315001
+Zákamenné
+00314358
+Zákopčie
+00326046
+Zalužice
+00317926
+Záriečie
+00313947
+Závadka nad Hronom
+00313203
+Zavar
+00315915
+Závažná Poruba
+00310158
+Závod
+00315010
+Zázrivá
+00308668
+Zbehy
+00322741
+Zborov
+00314366
+Zborov nad Bystricou
+00306720
+Zemianska Olča
+00651001
+Zemianske Kostoľany
+
+082 21
+922 08
+962 02
+962 26
+991 28
+900 23
+072 31
+951 06
+902 01
+900 85
+925 84
+919 23
+919 42
+076 72
+930 31
+925 05
+952 01
+930 25
+093 01
+093 01
+059 72
+906 06
+922 03
+991 31
+038 61
+951 44
+966 02
+032 32
+067 16
+023 55
+900 66
+062 01
+935 77
+094 33
+901 01
+900 65
+029 56
+023 11
+072 34
+020 52
+976 67
+919 26
+032 02
+908 72
+027 05
+951 42
+086 33
+023 03
+946 14
+972 43
+
+Námestie svätého Jakuba 1
+Veselé 346
+Zvolenská 1
+Vígľašská Huta - Kalinka 73
+Cesta slobody 466
+Hlavná 209/206
+Vinné 508
+Vinodol 473
+Pezinská 95
+Vištuk 353
+Hlavná 1
+Vlčkovce 15
+Voderady 262
+Vojany 72
+Vojka nad Dunajom 150
+Vozokany 100
+Hlavná 1 221
+Hlavná 622
+Dr. Cyrila Daxnera 87
+Námestie Slobody 135/4
+Vrbov 204
+Vrbovce 42
+Štefánikova 15
+Vrbovka 56
+Matušovický rad 4
+Výčapy Opatovce 467
+Vyhne 100
+Hlavná 616
+Výrava 100
+Ústredie 215
+Hlavná 196/102
+Vysoké Tatry 1
+Vyškovce nad Ipľom 132
+Vyšný Žipov 83
+Pezinská 66
+Hlavná 29
+Zákamenné 1002
+Stred 824
+Zalužice 207
+Záriečie 190
+Osloboditeľov 27
+Viktorínova 14
+Havná 135
+Sokolská 243
+Stred 409
+Zbehy 69
+Lesná 10
+Zborov nad Bystricou 223
+Hlavná 26
+4.apríla 60/28
+
+Prešov
+Piešťany
+Detva
+Detva
+Veľký Krtíš
+Pezinok
+Michalovce
+Nitra
+Pezinok
+Pezinok
+Šaľa
+Trnava
+Trnava
+Michalovce
+Dunajská Streda
+Galanta
+Nitra
+Dunajská Streda
+Vranov nad Topľou
+Vranov nad Topľou
+Kežmarok
+Myjava
+Piešťany
+Veľký Krtíš
+Martin
+Nitra
+Žiar nad Hronom
+Liptovský Mikuláš
+Medzilaborce
+Čadca
+Malacky
+Poprad
+Levice
+Vranov nad Topľou
+Malacky
+Malacky
+Námestovo
+Čadca
+Michalovce
+Púchov
+Brezno
+Trnava
+Liptovský Mikuláš
+Malacky
+Dolný Kubín
+Nitra
+Bardejov
+Čadca
+Komárno
+Prievidza
+
+00306339
+00309371
+00326071
+00305839
+00308676
+00306738
+00311367
+00317969
+00305235
+00315044
+00320439
+00320447
+00317047
+00311375
+00321117
+00326089
+00324973
+00326780
+00307696
+00319716
+00307700
+00321125
+00306347
+00321796
+
+Zemianske Sady
+Zemné
+Zemplínska Široká
+Zlaté Klasy
+Zlaté Moravce
+Zlatná na Ostrove
+Zlatníky
+Zliechov
+Zohor
+Zubrohlava
+Zvolen
+Zvolenská Slatina
+Žabokreky
+Žabokreky nad Nitrou
+Žarnovica
+Žbince
+Ždaňa
+Ždiar
+Želiezovce
+Želovce
+Žemberovce
+Žiar nad Hronom
+Žihárec
+Žilina
+
+925 54
+941 22
+072 12
+930 39
+953 01
+946 12
+956 37
+018 32
+900 51
+029 43
+960 61
+962 01
+038 40
+958 52
+966 81
+072 16
+044 11
+059 55
+937 01
+991 06
+935 02
+965 01
+925 83
+010 01
+
+Zemianske Sady 42
+G.Czuczora 268
+Zemplínska Široká 304
+Poštová 550
+1. mája 2
+Školská 184
+Zlatníky 42
+Zliechov 233
+Dolná 46
+Plátenícka 464
+Námestie slobody 22
+SNP 370/19
+Žabokreky 145
+Žabokreky nad Nitrou 216
+Nám. SNP 33
+Žbince 34
+Ždaňa 118
+Ždiar 202
+SNP 2
+Zdravotnícka 255
+SNP 39
+Štefana Moysesa 46
+Žihárec 599
+Námestie obetí komunizmu 1
+
+Galanta
+Nové Zámky
+Michalovce
+Dunajská Streda
+Zlaté Moravce
+Komárno
+Bánovce nad Bebravou
+Ilava
+Malacky
+Námestovo
+Zvolen
+Zvolen
+Martin
+Partizánske
+Žarnovica
+Michalovce
+Košice - okolie
+Poprad
+Levice
+Veľký Krtíš
+Levice
+Žiar nad Hronom
+Šaľa
+Žilina
+
+

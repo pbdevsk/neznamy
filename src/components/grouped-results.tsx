@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronRight, ChevronLeft, Users, MapPin, ExternalLink, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight, Users, MapPin, ExternalLink, Search, Map } from 'lucide-react';
 import type { SearchResult } from '@/lib/db';
 import { TagChip } from './tag-chip';
 import { RecordDetail } from './record-detail';
+import { Pagination } from './pagination';
 import { createGoogleSearchUrl, createGoogleSearchDescription, isGoogleSearchAvailable } from '@/lib/google-search';
+import { createGoogleMapsUrl, createZbgisUrl, createZbgisLvUrl, isGoogleMapsAvailable, createGoogleMapsDescription, createZbgisDescription, createZbgisLvDescription } from '@/lib/map-utils';
+import { useBatchGeocoding } from '@/hooks/use-geocoding';
 
 interface LvGroup {
   katastralne_uzemie: string;
@@ -23,16 +26,24 @@ interface GroupedResultsProps {
   pagination?: {
     currentPage: number;
     totalPages: number;
+    onPageChange: (page: number) => void;
     onPrevious: () => void;
     onNext: () => void;
     canPrevious: boolean;
     canNext: boolean;
+    pageSize: number;
+    onPageSizeChange: (size: number) => void;
+    totalResults?: number;
   };
 }
 
 export function GroupedResults({ results, loading, onTagClick, onSearch, pagination }: GroupedResultsProps) {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [expandedRecords, setExpandedRecords] = useState<Set<number>>(new Set());
+  
+  // Batch geocoding pre všetky lokality v zoskupených výsledkoch
+  const localities = results.map(r => r.katastralne_uzemie);
+  const geocodingResults = useBatchGeocoding(localities);
 
   // Zoskupenie výsledkov podľa LV
   const groupedResults = results.reduce((groups: Record<string, LvGroup>, result) => {
@@ -235,8 +246,20 @@ export function GroupedResults({ results, loading, onTagClick, onSearch, paginat
                               </div>
                             </div>
                             
-                            <div className="flex items-center gap-2 ml-2">
-                              {/* Google search pre osobu */}
+                            <div className="flex items-center gap-1 ml-2">
+                              {/* Kataster PDF */}
+                              <a
+                                href={`https://kataster.skgeodesy.sk/Portal45/api/Bo/GeneratePrfPublic/?cadastralUnitCode=${record.poradie}&prfNumber=${record.lv}&outputType=pdf`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                                title={`Kataster PDF: Poradie ${record.poradie}, LV ${record.lv}`}
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+
+                              {/* Google Search */}
                               {(() => {
                                 const googleUrl = createGoogleSearchUrl(record.meno_raw, record.katastralne_uzemie);
                                 const isAvailable = isGoogleSearchAvailable(record.meno_raw);
@@ -247,13 +270,77 @@ export function GroupedResults({ results, loading, onTagClick, onSearch, paginat
                                     href={googleUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/40 rounded transition-colors"
+                                    className="p-1 rounded hover:bg-green-100 dark:hover:bg-green-900/30 text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition-colors"
                                     title={description}
                                     onClick={(e) => e.stopPropagation()}
                                   >
-                                    <Search className="h-3 w-3" />
+                                    <Search className="h-4 w-4" />
                                   </a>
-                                ) : null;
+                                ) : (
+                                  <div 
+                                    className="p-1 rounded text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                                    title="Google vyhľadávanie nie je k dispozícii"
+                                  >
+                                    <Search className="h-4 w-4" />
+                                  </div>
+                                );
+                              })()}
+                              
+                              {/* Google Maps */}
+                              {(() => {
+                                const isAvailable = isGoogleMapsAvailable(record.katastralne_uzemie);
+                                const geocodingData = geocodingResults.get(record.katastralne_uzemie);
+                                const mapsUrl = geocodingData?.googleMapsUrl || createGoogleMapsUrl(record.katastralne_uzemie);
+                                const description = createGoogleMapsDescription(record.katastralne_uzemie);
+                                
+                                return isAvailable ? (
+                                  <a
+                                    href={mapsUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`p-1 rounded transition-colors ${
+                                      geocodingData?.loading 
+                                        ? 'text-gray-400 dark:text-gray-600 cursor-wait'
+                                        : 'hover:bg-orange-100 dark:hover:bg-orange-900/30 text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300'
+                                    }`}
+                                    title={geocodingData?.hasCoordinates ? `${description} (s presnou polohou)` : description}
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <MapPin className="h-4 w-4" />
+                                  </a>
+                                ) : (
+                                  <div 
+                                    className="p-1 rounded text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                                    title="Google Maps nie je k dispozícii"
+                                  >
+                                    <MapPin className="h-4 w-4" />
+                                  </div>
+                                );
+                              })()}
+
+                              {/* ZBGIS LV Detail */}
+                              {(() => {
+                                const geocodingData = geocodingResults.get(record.katastralne_uzemie);
+                                const zbgisLvUrl = createZbgisLvUrl(record.poradie, record.lv, geocodingData?.coordinates || undefined);
+                                const hasCoordinates = geocodingData?.hasCoordinates || false;
+                                const description = createZbgisLvDescription(record.poradie, record.lv, hasCoordinates);
+                                
+                                return (
+                                  <a
+                                    href={zbgisLvUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`p-1 rounded transition-colors ${
+                                      geocodingData?.loading 
+                                        ? 'text-gray-400 dark:text-gray-600 cursor-wait'
+                                        : 'hover:bg-purple-100 dark:hover:bg-purple-900/30 text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300'
+                                    }`}
+                                    title={description}
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <Map className="h-4 w-4" />
+                                  </a>
+                                );
                               })()}
                               
                               {/* Expand indikátor */}
@@ -291,31 +378,18 @@ export function GroupedResults({ results, loading, onTagClick, onSearch, paginat
 
       {/* Pagination */}
       {pagination && (
-        <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-3">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-700 dark:text-gray-300">
-              Strana {pagination.currentPage} / {pagination.totalPages}
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={pagination.onPrevious}
-                disabled={!pagination.canPrevious}
-                className="px-3 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Predchádzajúca
-              </button>
-              <button
-                onClick={pagination.onNext}
-                disabled={!pagination.canNext}
-                className="px-3 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-              >
-                Ďalšia
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
+        <Pagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+          onPageChange={pagination.onPageChange}
+          onPrevious={pagination.onPrevious}
+          onNext={pagination.onNext}
+          canPrevious={pagination.canPrevious}
+          canNext={pagination.canNext}
+          pageSize={pagination.pageSize}
+          onPageSizeChange={pagination.onPageSizeChange}
+          totalResults={pagination.totalResults}
+        />
       )}
     </div>
   );
