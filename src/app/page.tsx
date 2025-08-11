@@ -1,103 +1,312 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Upload, Database } from 'lucide-react';
+import { SearchFilters } from '@/components/search-filters';
+import { ResultsTable } from '@/components/results-table';
+import { GroupedResults } from '@/components/grouped-results';
+import { FacetsPanel } from '@/components/facets-panel';
+import { ImportModal } from '@/components/import-modal';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { DebugInfo } from '@/components/debug-info';
+
+
+import type { SearchResult, Facets } from '@/lib/db';
+import type { SearchFilters as SearchFiltersType } from '@/components/search-filters';
+
+interface Stats {
+  owners: number;
+  tags: number;
+  territories: number;
+}
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [facets, setFacets] = useState<Facets>({ given_names: [], maiden_names: [], status: [] });
+  const [territories, setTerritories] = useState<string[]>([]);
+  const [stats, setStats] = useState<Stats>({ owners: 0, tags: 0, territories: 0 });
+  const [loading, setLoading] = useState(false);
+  const [facetsLoading, setFacetsLoading] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [currentFilters, setCurrentFilters] = useState<SearchFiltersType>({
+    q: '',
+    kuz: 'Všetky',
+    lv: '',
+    region_id: '',
+    district_id: '',
+    mode: 'contains',
+    groupByLv: false
+  });
+  const [nextCursor, setNextCursor] = useState<string | undefined>();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Načítanie dát pri spustení
+  useEffect(() => {
+    fetchTerritories();
+    fetchStats();
+  }, []);
+
+  const fetchTerritories = async () => {
+    try {
+      const response = await fetch('/api/territories');
+      if (response.ok) {
+        const data = await response.json();
+        setTerritories(data);
+      }
+    } catch (error) {
+      console.error('Chyba pri načítavaní území:', error);
+    }
+  };
+
+  const fetchStats = async () => {
+    try {
+      const response = await fetch('/api/stats');
+      if (response.ok) {
+        const data = await response.json();
+        setStats(data);
+      }
+    } catch (error) {
+      console.error('Chyba pri načítavaní štatistík:', error);
+    }
+  };
+
+  const performSearch = async (filters: SearchFiltersType, cursor?: string) => {
+    setLoading(true);
+    
+    try {
+      const params = new URLSearchParams();
+      if (filters.q) params.append('q', filters.q);
+      if (filters.kuz && filters.kuz !== 'Všetky') params.append('kuz', filters.kuz);
+      if (filters.lv) params.append('lv', filters.lv);
+      if (filters.region_id) params.append('region_id', filters.region_id);
+      if (filters.district_id) params.append('district_id', filters.district_id);
+      params.append('mode', filters.mode);
+      params.append('limit', '50');
+      if (cursor) params.append('cursor', cursor);
+
+      const response = await fetch(`/api/search?${params}`);
+      if (response.ok) {
+        const data = await response.json();
+        setResults(data.items);
+        setNextCursor(data.next_cursor);
+        
+        // Aktualizácia počtu záznamov v UI
+        const recordCountElement = document.getElementById('record-count');
+        if (recordCountElement) {
+          recordCountElement.textContent = `Záznamov: ${data.items.length}${data.next_cursor ? '+' : ''}`;
+        }
+      } else {
+        setResults([]);
+        setNextCursor(undefined);
+      }
+    } catch (error) {
+      console.error('Chyba pri vyhľadávaní:', error);
+      setResults([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchFacets = async (filters: SearchFiltersType) => {
+    setFacetsLoading(true);
+    
+    try {
+      const params = new URLSearchParams();
+      if (filters.q) params.append('q', filters.q);
+      if (filters.kuz && filters.kuz !== 'Všetky') params.append('kuz', filters.kuz);
+      if (filters.lv) params.append('lv', filters.lv);
+      if (filters.region_id) params.append('region_id', filters.region_id);
+      if (filters.district_id) params.append('district_id', filters.district_id);
+      params.append('mode', filters.mode);
+
+      const response = await fetch(`/api/facets?${params}`);
+      if (response.ok) {
+        const data = await response.json();
+        setFacets(data);
+      }
+    } catch (error) {
+      console.error('Chyba pri načítavaní facetov:', error);
+    } finally {
+      setFacetsLoading(false);
+    }
+  };
+
+  const handleSearch = async (filters: SearchFiltersType) => {
+    setCurrentFilters(filters);
+    setCurrentPage(1);
+    setNextCursor(undefined);
+    
+    await Promise.all([
+      performSearch(filters),
+      fetchFacets(filters)
+    ]);
+  };
+
+  const handleTagClick = (value: string) => {
+    const newFilters = {
+      ...currentFilters,
+      q: currentFilters.q ? `${currentFilters.q} ${value}` : value
+    };
+    handleSearch(newFilters);
+  };
+
+  const handleNameSearch = (name: string) => {
+    const newFilters = {
+      ...currentFilters,
+      q: name // Nahradi aktuálny dotaz novým menom
+    };
+    handleSearch(newFilters);
+  };
+
+  const handleFacetClick = (value: string) => {
+    handleTagClick(value);
+  };
+
+  const handleNextPage = () => {
+    if (nextCursor) {
+      setCurrentPage(prev => prev + 1);
+      performSearch(currentFilters, nextCursor);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1);
+      // Pre jednoduchosť implementácie, vrátime sa na začiatok
+      performSearch(currentFilters);
+    }
+  };
+
+  const handleImportSuccess = () => {
+    // Refresh territories a ostatné dáta
+    fetchTerritories();
+    fetchStats(); // Refresh štatistiky po importe
+    if (currentFilters.q || currentFilters.kuz !== 'Všetky' || currentFilters.lv) {
+      handleSearch(currentFilters);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Sticky header */}
+      <div className="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        {/* Horný panel s nadpisom a prepínačom témy */}
+        <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
+              <Database className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                Register neznámych vlastníkov
+              </h1>
+              {/* Štatistiky */}
+              <div className="flex items-center gap-4 mt-2 text-sm text-gray-600 dark:text-gray-400">
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  {stats.owners.toLocaleString('sk-SK')} vlastníkov
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  {stats.tags.toLocaleString('sk-SK')} tagov
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                  {stats.territories} území
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setIsImportModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors"
+            >
+              <Upload className="h-4 w-4" />
+              Import CSV
+            </button>
+
+            <ThemeToggle />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        {/* Filter panel */}
+        <SearchFilters
+          onSearch={handleSearch}
+          territories={territories}
+          loading={loading}
+        />
+      </div>
+
+      {/* Main content */}
+      <div className="flex gap-6 p-6">
+        {/* Výsledky (ľavá strana) */}
+        <div className="flex-1">
+          {currentFilters.groupByLv ? (
+            <GroupedResults
+              results={results}
+              loading={loading}
+              onTagClick={handleTagClick}
+              onSearch={handleNameSearch}
+              pagination={{
+                currentPage,
+                totalPages: nextCursor ? currentPage + 1 : currentPage,
+                onPrevious: handlePreviousPage,
+                onNext: handleNextPage,
+                canPrevious: currentPage > 1,
+                canNext: !!nextCursor
+              }}
+            />
+          ) : (
+            <ResultsTable
+              results={results}
+              loading={loading}
+              onTagClick={handleTagClick}
+              onSearch={handleNameSearch}
+              pagination={{
+                currentPage,
+                totalPages: nextCursor ? currentPage + 1 : currentPage,
+                onPrevious: handlePreviousPage,
+                onNext: handleNextPage,
+                canPrevious: currentPage > 1,
+                canNext: !!nextCursor
+              }}
+            />
+          )}
+        </div>
+
+        {/* Facety (pravá strana) */}
+        <div className="w-80 hidden lg:block">
+          <FacetsPanel
+            facets={facets}
+            loading={facetsLoading}
+            onFacetClick={handleFacetClick}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
+
+      {/* Facety na mobile (pod tabuľkou) */}
+      <div className="block lg:hidden px-6 pb-6">
+        <FacetsPanel
+          facets={facets}
+          loading={facetsLoading}
+          onFacetClick={handleFacetClick}
+        />
+      </div>
+
+      {/* Import modal */}
+      <ImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onSuccess={handleImportSuccess}
+      />
+
+
+
+      {/* Debug info panel */}
+      <DebugInfo />
     </div>
   );
 }
