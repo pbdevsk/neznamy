@@ -33,99 +33,81 @@ export async function GET(request: NextRequest) {
       const values: any[] = [];
       let valueIndex = 1;
 
-      // Textové vyhľadávanie
+      // Textové vyhľadávanie pre SQLite
       if (params.q && params.q.trim()) {
         const normalizedQuery = removeDiacritics(params.q.trim());
         
         switch (params.mode) {
           case 'exact':
-            const tokens = normalizedQuery.split(/\s+/).filter(t => t.length > 0);
-            const tokenConditions = tokens.map(token => {
-              values.push(token);
-              return `o.meno_clean ~ ('\\m' || $${valueIndex++} || '\\M')`;
-            });
-            if (tokenConditions.length > 0) {
-              conditions.push(`(${tokenConditions.join(' AND ')})`);
-            }
+            conditions.push(`o.id IN (SELECT rowid FROM owners_fts WHERE meno_clean MATCH ?)`);
+            values.push(`"${normalizedQuery}"`);
             break;
             
           case 'starts':
+            conditions.push(`o.meno_clean LIKE ?`);
             values.push(normalizedQuery + '%');
-            conditions.push(`o.meno_clean LIKE $${valueIndex++}`);
             break;
             
           case 'contains':
           default:
-            values.push(normalizedQuery);
-            conditions.push(`o.meno_clean % $${valueIndex++}`);
+            conditions.push(`o.id IN (SELECT rowid FROM owners_fts WHERE meno_clean MATCH ?)`);
+            values.push(normalizedQuery + '*');
             break;
         }
       }
 
       // Filter katastrálne územie
       if (params.kuz && params.kuz !== 'Všetky') {
+        conditions.push(`o.katastralne_uzemie = ?`);
         values.push(params.kuz);
-        conditions.push(`o.katastralne_uzemie = $${valueIndex++}`);
       }
 
       // Filter LV
       if (params.lv) {
+        conditions.push(`o.lv = ?`);
         values.push(params.lv);
-        conditions.push(`o.lv = $${valueIndex++}`);
-      }
-
-      // Filter región
-      if (params.region_id) {
-        values.push(params.region_id);
-        conditions.push(`o.region_id = $${valueIndex++}`);
-      }
-
-      // Filter okres
-      if (params.district_id) {
-        values.push(params.district_id);
-        conditions.push(`o.district_id = $${valueIndex++}`);
       }
 
       const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-      // Paralelné dotazy pre všetky facety
+      // SQLite facets queries
       const tagWhereClause = whereClause ? `${whereClause} AND` : 'WHERE';
       
       const namesQuery = `
         SELECT t.value, COUNT(*) as count
         FROM owner_tags t
         JOIN owners o ON t.owner_id = o.id
-        ${tagWhereClause} t.key = 'meno'
-        AND t.value ~ '^[A-ZÁÄČĎÉĚÍĹĽŇÓÔŔŘŠŤÚŮÝŽ]'
+        ${tagWhereClause} t.key = 'token'
         AND LENGTH(t.value) >= 2
         GROUP BY t.value
         ORDER BY count DESC, t.value ASC
         LIMIT 20
       `;
       
-      const deathQuery = `
+      const maidenQuery = `
         SELECT t.value, COUNT(*) as count
         FROM owner_tags t
         JOIN owners o ON t.owner_id = o.id
-        ${tagWhereClause} t.key = '✝️'
+        ${tagWhereClause} t.key = 'rodné'
         GROUP BY t.value
         ORDER BY count DESC, t.value ASC
         LIMIT 15
       `;
       
-      const territoriesQuery = `
-        SELECT o.katastralne_uzemie as value, COUNT(*) as count
-        FROM owners o
-        ${whereClause}
-        GROUP BY o.katastralne_uzemie
-        ORDER BY count DESC, value ASC
+      const statusQuery = `
+        SELECT t.value, COUNT(*) as count
+        FROM owner_tags t
+        JOIN owners o ON t.owner_id = o.id
+        ${tagWhereClause} t.key = 'status'
+        GROUP BY t.value
+        ORDER BY count DESC, t.value ASC
         LIMIT 10
       `;
 
-      const [namesResult, deathResult, territoriesResult] = await Promise.all([
+      const [namesResult, maidenResult, statusResult] = await Promise.all([
         client.query(namesQuery, values),
-        client.query(deathQuery, values),
-        client.query(territoriesQuery, values)
+        client.query(maidenQuery, values),
+        client.query(statusQuery, values)
       ]);
 
       const facets: Facets = {
@@ -133,11 +115,11 @@ export async function GET(request: NextRequest) {
           value: row.value,
           count: parseInt(row.count)
         })),
-        maiden_names: deathResult.rows.map(row => ({
+        maiden_names: maidenResult.rows.map(row => ({
           value: row.value,
           count: parseInt(row.count)
         })),
-        status: territoriesResult.rows.map(row => ({
+        status: statusResult.rows.map(row => ({
           value: row.value,
           count: parseInt(row.count)
         }))

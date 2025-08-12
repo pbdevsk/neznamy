@@ -38,10 +38,9 @@ export async function GET(request: NextRequest) {
     const client = await pool.connect();
     
     try {
-      // Zostavenie WHERE klauzuly
+      // Zostavenie WHERE klauzuly pre SQLite
       const conditions: string[] = [];
       const values: any[] = [];
-      let valueIndex = 1;
 
       // Textové vyhľadávanie
       if (params.q && params.q.trim()) {
@@ -49,75 +48,50 @@ export async function GET(request: NextRequest) {
         
         switch (params.mode) {
           case 'exact':
-            // Tokenová presná zhoda
-            const tokens = normalizedQuery.split(/\s+/).filter(t => t.length > 0);
-            const tokenConditions = tokens.map(token => {
-              values.push(token);
-              return `meno_clean ~ ('\\m' || $${valueIndex++} || '\\M')`;
-            });
-            if (tokenConditions.length > 0) {
-              conditions.push(`(${tokenConditions.join(' AND ')})`);
-            }
+            // FTS5 fulltext search pre presnú zhodu
+            conditions.push(`id IN (SELECT rowid FROM owners_fts WHERE meno_clean MATCH ?)`);
+            values.push(`"${normalizedQuery}"`);
             break;
             
           case 'starts':
+            conditions.push(`meno_clean LIKE ?`);
             values.push(normalizedQuery + '%');
-            conditions.push(`meno_clean LIKE $${valueIndex++}`);
             break;
             
           case 'contains':
           default:
-            // Trigram similarity search
-            values.push(normalizedQuery);
-            conditions.push(`meno_clean % $${valueIndex++}`);
+            // FTS5 fulltext search pre obsahuje
+            conditions.push(`id IN (SELECT rowid FROM owners_fts WHERE meno_clean MATCH ?)`);
+            values.push(normalizedQuery + '*');
             break;
         }
       }
 
       // Filter katastrálne územie
       if (params.kuz && params.kuz !== 'Všetky') {
+        conditions.push(`katastralne_uzemie = ?`);
         values.push(params.kuz);
-        conditions.push(`katastralne_uzemie = $${valueIndex++}`);
       }
 
       // Filter LV
       if (params.lv) {
+        conditions.push(`lv = ?`);
         values.push(params.lv);
-        conditions.push(`lv = $${valueIndex++}`);
-      }
-
-      // Filter región
-      if (params.region_id) {
-        values.push(params.region_id);
-        conditions.push(`region_id = $${valueIndex++}`);
-      }
-
-      // Filter okres
-      if (params.district_id) {
-        values.push(params.district_id);
-        conditions.push(`district_id = $${valueIndex++}`);
       }
 
       // Cursor pagination
       if (params.cursor) {
         try {
           const cursorData = JSON.parse(Buffer.from(params.cursor, 'base64').toString());
+          conditions.push(`id > ?`);
           values.push(cursorData.id);
-          conditions.push(`id > $${valueIndex++}`);
         } catch (e) {
           // Neplatný cursor, ignorujeme
         }
       }
 
-      // Zostavenie ORDER BY
-      let orderBy = 'id ASC'; // Default ordering
-      if (params.q && params.mode === 'contains') {
-        orderBy = `similarity(meno_clean, $1) DESC, katastralne_uzemie ASC, lv ASC, poradie ASC, id ASC`;
-      } else if (params.q) {
-        orderBy = 'katastralne_uzemie ASC, lv ASC, poradie ASC, id ASC';
-      } else {
-        orderBy = 'katastralne_uzemie ASC, lv ASC, poradie ASC, id ASC';
-      }
+      // Zostavenie ORDER BY pre SQLite
+      let orderBy = 'katastralne_uzemie ASC, lv ASC, poradie ASC, id ASC';
 
       // Hlavný dotaz
       const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
@@ -132,7 +106,7 @@ export async function GET(request: NextRequest) {
         FROM owners
         ${whereClause}
         ORDER BY ${orderBy}
-        LIMIT $${valueIndex}
+        LIMIT ?
       `;
 
       values.push(params.limit! + 1); // +1 pre zistenie, či existuje ďalšia strana
@@ -151,10 +125,11 @@ export async function GET(request: NextRequest) {
       let tags: OwnerTag[] = [];
 
       if (ownerIds.length > 0) {
+        const placeholders = ownerIds.map(() => '?').join(',');
         const tagsQuery = `
           SELECT owner_id, key, value, uncertain
           FROM owner_tags
-          WHERE owner_id = ANY($1)
+          WHERE owner_id IN (${placeholders})
           ORDER BY owner_id, 
             CASE key
               WHEN 'meno' THEN 1
@@ -163,7 +138,7 @@ export async function GET(request: NextRequest) {
             END
         `;
         
-        const tagsResult = await client.query(tagsQuery, [ownerIds]);
+        const tagsResult = await client.query(tagsQuery, ownerIds);
         tags = tagsResult.rows;
       }
 

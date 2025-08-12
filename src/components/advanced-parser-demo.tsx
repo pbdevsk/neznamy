@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Papa from 'papaparse';
 import { AdvancedParser } from '@/lib/parser/advanced-parser';
 import { ParsedRecord, RawRecord } from '@/lib/parser/types';
@@ -8,7 +8,7 @@ import { generateTags } from '@/lib/normalize';
 import { mergeTags, MergedTag, getConflicts } from '@/lib/parser/tag-merger';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { createZbgisLvUrl } from '@/lib/map-utils';
-import { Database, Upload, FileText, BarChart3, Filter, Download, ExternalLink, MapPin, FileDown, Map as MapIcon } from 'lucide-react';
+import { Database, Upload, FileText, BarChart3, Filter, Download, ExternalLink, MapPin, FileDown, Map as MapIcon, ChevronDown, ChevronRight } from 'lucide-react';
 
 interface ProcessedRow {
   originalIndex: number; // Riadok v CSV (pre debug)
@@ -60,12 +60,18 @@ const SortableHeader = ({ field, children, className = "", handleSort, sortField
   </th>
 );
 
-export function AdvancedParserDemo() {
+interface AdvancedParserDemoProps {
+  onImportSuccess?: () => void;
+}
+
+export function AdvancedParserDemo({ onImportSuccess }: AdvancedParserDemoProps = {}) {
   const [file, setFile] = useState<File | null>(null);
   const [delimiter, setDelimiter] = useState<string>(';');
   const [columnMapping, setColumnMapping] = useState<{[key: string]: string}>({});
   const [processedRows, setProcessedRows] = useState<ProcessedRow[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importStatus, setImportStatus] = useState<string>('');
   const [progress, setProgress] = useState(0);
   const [csvHeaders, setCsvHeaders] = useState<string[]>([]);
   const [parser] = useState(() => new AdvancedParser());
@@ -82,6 +88,12 @@ export function AdvancedParserDemo() {
   // Search state
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedGender, setSelectedGender] = useState<string>('all');
+  
+  // LV filtering state
+  const [selectedLVFilter, setSelectedLVFilter] = useState<{lv: string; poradie: string} | null>(null);
+  
+  // Accordion state for expanded rows
+  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
 
   // Sorting funkcia
   const handleSort = (field: string) => {
@@ -191,11 +203,56 @@ export function AdvancedParserDemo() {
     window.open(`https://www.google.com/maps/search/${searchQuery}`, '_blank');
   };
 
+  // Funkcia na získanie ďalších LV pre osobu v rovnakej obci
+  const getAdditionalLVs = (currentRow: ProcessedRow): Array<{lv: string; poradie: string}> => {
+    const krstneMeno = currentRow.mergedTags.find(t => t.key === 'krstné_meno')?.value;
+    const priezvisko = currentRow.mergedTags.find(t => t.key === 'priezvisko')?.value;
+    
+    if (!krstneMeno || !priezvisko) return [];
+    
+    // Nájdi všetky riadky s rovnakým menom a priezviskom v rovnakej obci
+    const samePersonRows = processedRows.filter(row => {
+      const rowKrstneMeno = row.mergedTags.find(t => t.key === 'krstné_meno')?.value;
+      const rowPriezvisko = row.mergedTags.find(t => t.key === 'priezvisko')?.value;
+      
+      return row.katastralne_uzemie === currentRow.katastralne_uzemie &&
+             rowKrstneMeno === krstneMeno &&
+             rowPriezvisko === priezvisko &&
+             row.lv !== currentRow.lv; // Iné LV
+    });
+    
+    // Získaj unikátne LV čísla s poradím
+    const uniqueLVs = new Map<string, string>();
+    samePersonRows.forEach(row => {
+      if (!uniqueLVs.has(row.lv)) {
+        uniqueLVs.set(row.lv, row.poradie);
+      }
+    });
+    
+    return Array.from(uniqueLVs.entries()).map(([lv, poradie]) => ({ lv, poradie }));
+  };
+
+  // Funkcia na toggle expandovania riadku
+  const toggleRowExpansion = (rowIndex: number) => {
+    setExpandedRows(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(rowIndex)) {
+        newSet.delete(rowIndex);
+      } else {
+        newSet.add(rowIndex);
+      }
+      return newSet;
+    });
+  };
+
   // Sortované a filtrované dáta
   const sortedAndFilteredRows = useMemo(() => {
     let filtered = processedRows.filter(row => {
-      // LV filter
-      if (selectedLV && row.lv !== selectedLV) return false;
+      // LV + Poradie filter (nový presnejší filter)
+      if (selectedLVFilter && (row.lv !== selectedLVFilter.lv || row.poradie !== selectedLVFilter.poradie)) return false;
+      
+      // Starý LV filter (zachovaný pre kompatibilitu)
+      if (selectedLV && row.lv !== selectedLV && !selectedLVFilter) return false;
       
       // Gender filter
       if (selectedGender !== 'all' && row.parsed.gender !== selectedGender) return false;
@@ -227,7 +284,7 @@ export function AdvancedParserDemo() {
       
       return sortDirection === 'desc' ? -comparison : comparison;
     });
-  }, [processedRows, selectedLV, selectedGender, searchQuery, sortField, sortDirection]);
+  }, [processedRows, selectedLV, selectedLVFilter, selectedGender, searchQuery, sortField, sortDirection]);
 
   // Štatistiky
   const stats = useMemo(() => {
@@ -256,6 +313,44 @@ export function AdvancedParserDemo() {
       conflictRate,
     };
   }, [processedRows]);
+
+  // Import do databázy
+  const importToDatabase = async () => {
+    if (!file || processedRows.length === 0) return;
+
+    setIsImporting(true);
+    setImportStatus('Pripravujem import...');
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('delimiter', delimiter);
+      formData.append('columnMapping', JSON.stringify(columnMapping));
+
+      const response = await fetch('/api/import', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Import zlyhal');
+      }
+
+      const result = await response.json();
+      setImportStatus(`Import úspešný! Importované: ${result.successfulRows} záznamov`);
+      
+      // Zavolaj callback po úspešnom importe
+      if (onImportSuccess) {
+        setTimeout(() => {
+          onImportSuccess();
+        }, 1500);
+      }
+    } catch (error) {
+      setImportStatus(`Chyba pri importe: ${error instanceof Error ? error.message : 'Neznáma chyba'}`);
+    } finally {
+      setIsImporting(false);
+    }
+  };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -480,6 +575,33 @@ export function AdvancedParserDemo() {
                       Spracovať
                     </button>
                   )}
+                  
+                  {processedRows.length > 0 && !isImporting && (
+                    <button
+                      onClick={importToDatabase}
+                      className="px-4 py-1 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md transition-colors flex items-center gap-2"
+                    >
+                      <Database className="h-4 w-4" />
+                      Importovať do DB
+                    </button>
+                  )}
+                  
+                  {isImporting && (
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-green-500 border-t-transparent"></div>
+                      Importujem...
+                    </div>
+                  )}
+                  
+                  {importStatus && (
+                    <div className={`text-sm px-3 py-1 rounded ${
+                      importStatus.includes('úspešný') 
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                        : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                    }`}>
+                      {importStatus}
+                    </div>
+                  )}
                 </div>
 
                 {/* Search and filters */}
@@ -504,18 +626,27 @@ export function AdvancedParserDemo() {
                       <option value="muž">Muž</option>
                       <option value="žena">Žena</option>
                     </select>
-                    {selectedLV && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-600 dark:text-gray-400">LV filter:</span>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">{selectedLV}</span>
-                        <button
-                          onClick={() => setSelectedLV(null)}
-                          className="text-red-600 hover:text-red-800 text-xs"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    )}
+                                         {(selectedLV || selectedLVFilter) && (
+                       <div className="flex items-center gap-2">
+                         <span className="text-sm text-gray-600 dark:text-gray-400">Filter:</span>
+                         {selectedLVFilter ? (
+                           <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">
+                             LV {selectedLVFilter.lv} + Poradie {selectedLVFilter.poradie}
+                           </span>
+                         ) : (
+                           <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">LV {selectedLV}</span>
+                         )}
+                         <button
+                           onClick={() => {
+                             setSelectedLV(null);
+                             setSelectedLVFilter(null);
+                           }}
+                           className="text-red-600 hover:text-red-800 text-xs"
+                         >
+                           ✕
+                         </button>
+                       </div>
+                     )}
                   </div>
                 )}
               </div>
@@ -615,17 +746,40 @@ export function AdvancedParserDemo() {
                      </th>
                    </tr>
                  </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-gray-600">
-                  {sortedAndFilteredRows.slice(0, 1000).map((row) => {
-                    const orderedTags = getOrderedTags(row.mergedTags);
-                    const krstneMeno = row.mergedTags.find(t => t.key === 'krstné_meno');
-                    const priezvisko = row.mergedTags.find(t => t.key === 'priezvisko');
+                                 <tbody className="divide-y divide-gray-100 dark:divide-gray-600">
+                   {sortedAndFilteredRows.slice(0, 1000).map((row, index) => {
+                     const orderedTags = getOrderedTags(row.mergedTags);
+                     const krstneMeno = row.mergedTags.find(t => t.key === 'krstné_meno');
+                     const priezvisko = row.mergedTags.find(t => t.key === 'priezvisko');
+                     const additionalLVs = getAdditionalLVs(row);
+                     const isExpanded = expandedRows.has(row.originalIndex);
+                     const hasAdditionalLVs = additionalLVs.length > 0;
 
-                                                              return (
-                       <tr key={row.originalIndex} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                     return (
+                       <React.Fragment key={row.originalIndex}>
+                         <tr 
+                           className={`transition-colors ${hasAdditionalLVs ? 'cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}
+                           onClick={() => hasAdditionalLVs && toggleRowExpansion(row.originalIndex)}
+                         >
                          {/* Meno a priezvisko s farebným krúžkom pre pohlavie */}
-                         <td className="px-3 py-3">
+                         <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>
                            <div className="flex items-center gap-2">
+                             {hasAdditionalLVs && (
+                               <button
+                                 onClick={(e) => {
+                                   e.stopPropagation();
+                                   toggleRowExpansion(row.originalIndex);
+                                 }}
+                                 className="p-0.5 hover:bg-gray-200 rounded transition-colors"
+                                 title={isExpanded ? "Skryť ďalšie LV" : `Zobraziť ${additionalLVs.length} ďalších LV`}
+                               >
+                                 {isExpanded ? (
+                                   <ChevronDown className="h-3 w-3 text-gray-600" />
+                                 ) : (
+                                   <ChevronRight className="h-3 w-3 text-gray-600" />
+                                 )}
+                               </button>
+                             )}
                              <div className={`w-2 h-2 rounded-full ${getGenderColor(row.parsed.gender)}`} title={row.parsed.gender || 'neznáme'}></div>
                              <div className="cursor-help" title={`Pôvodný text: "${row.meno_raw}"`}>
                                {krstneMeno && priezvisko ? (
@@ -658,15 +812,25 @@ export function AdvancedParserDemo() {
                          </td>
                          
                          {/* LV */}
-                         <td className="px-3 py-3">
+                         <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>
                            <button
-                             onClick={() => setSelectedLV(selectedLV === row.lv ? null : row.lv)}
+                             onClick={(e) => {
+                               e.stopPropagation();
+                               const isCurrentlySelected = selectedLVFilter?.lv === row.lv && selectedLVFilter?.poradie === row.poradie;
+                               if (isCurrentlySelected) {
+                                 setSelectedLVFilter(null);
+                                 setSelectedLV(null);
+                               } else {
+                                 setSelectedLVFilter({ lv: row.lv, poradie: row.poradie });
+                                 setSelectedLV(null);
+                               }
+                             }}
                              className={`font-mono text-sm px-2 py-1 rounded transition-colors ${
-                               selectedLV === row.lv 
-                                 ? 'bg-blue-100 text-blue-800 font-bold' 
+                               (selectedLVFilter?.lv === row.lv && selectedLVFilter?.poradie === row.poradie) || selectedLV === row.lv
+                                 ? 'bg-purple-100 text-purple-800 font-bold' 
                                  : 'text-blue-600 hover:bg-blue-50'
                              }`}
-                             title={`LV číslo: ${row.lv} - kliknite pre filtrovanie`}
+                             title={`LV číslo: ${row.lv}, Poradie: ${row.poradie} - kliknite pre filtrovanie rovnakých LV+Poradie`}
                            >
                              {row.lv}
                            </button>
@@ -707,31 +871,43 @@ export function AdvancedParserDemo() {
                          </td>
                          
                          {/* Akcie */}
-                         <td className="px-3 py-3">
+                         <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>
                            <div className="flex items-center gap-1">
                              <button
-                               onClick={() => openLVPdf(row.lv, row.poradie)}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 openLVPdf(row.lv, row.poradie);
+                               }}
                                className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
                                title="Otvoriť LV PDF"
                              >
                                <FileDown className="h-3 w-3" />
                              </button>
                              <button
-                               onClick={() => openZGBIS(row.lv, row.poradie)}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 openZGBIS(row.lv, row.poradie);
+                               }}
                                className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
                                title="Otvoriť v ZBGIS katastri"
                              >
                                <MapIcon className="h-3 w-3" />
                              </button>
                              <button
-                               onClick={() => openGoogleMaps(row.katastralne_uzemie)}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 openGoogleMaps(row.katastralne_uzemie);
+                               }}
                                className="p-1 text-red-600 hover:bg-red-50 rounded transition-colors"
                                title="Otvoriť v Google Maps"
                              >
                                <MapPin className="h-3 w-3" />
                              </button>
                              <button
-                               onClick={() => copyRowAsJSON(row)}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 copyRowAsJSON(row);
+                               }}
                                className={`p-1 rounded transition-colors ${
                                  copySuccess === row.originalIndex
                                    ? 'text-green-600 bg-green-50'
@@ -744,6 +920,36 @@ export function AdvancedParserDemo() {
                            </div>
                          </td>
                        </tr>
+
+                       {/* Expanded row pre ďalšie LV */}
+                       {isExpanded && additionalLVs.length > 0 && (
+                         <tr className="bg-blue-50 dark:bg-blue-900/10">
+                           <td colSpan={7} className="px-3 py-3">
+                             <div className="pl-6">
+                               <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                 Ďalšie LV pre {krstneMeno?.value} {priezvisko?.value} v obci {row.katastralne_uzemie}:
+                               </h4>
+                               <div className="flex flex-wrap gap-2">
+                                 {additionalLVs.map((lvData, lvIndex) => (
+                                   <button
+                                     key={lvIndex}
+                                     onClick={(e) => {
+                                       e.stopPropagation();
+                                       setSelectedLVFilter({ lv: lvData.lv, poradie: lvData.poradie });
+                                       setSelectedLV(null);
+                                     }}
+                                     className="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-full text-sm font-mono transition-colors"
+                                     title={`LV ${lvData.lv}, Poradie ${lvData.poradie} - kliknite pre filtrovanie`}
+                                   >
+                                     LV {lvData.lv} (P.č. {lvData.poradie})
+                                   </button>
+                                 ))}
+                               </div>
+                             </div>
+                           </td>
+                         </tr>
+                       )}
+                     </React.Fragment>
                      );
                   })}
                 </tbody>

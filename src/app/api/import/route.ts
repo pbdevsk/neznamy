@@ -126,17 +126,17 @@ export async function POST(request: NextRequest) {
       await client.query('BEGIN');
 
       // Vytvorenie source záznamu
-      const sourceResult = await client.query(
-        'INSERT INTO sources (name) VALUES ($1) RETURNING id',
+      await client.query(
+        'INSERT INTO sources (name) VALUES (?)',
         [file.name]
       );
+      
+      // Získanie ID posledného vloženého záznamu
+      const sourceResult = await client.query('SELECT last_insert_rowid() as id');
       stats.sourceId = sourceResult.rows[0].id;
 
-      // Príprava batch insertu s progress reportingom (iba owners najprv)
-      const ownerInserts: any[] = [];
-      const BATCH_SIZE = 1000; // Process in batches of 1000
-
-      debugLog('Processing rows', { totalRows: rows.length, batchSize: BATCH_SIZE });
+      // SQLite optimized import
+      debugLog('Processing rows', { totalRows: rows.length });
 
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
@@ -156,140 +156,41 @@ export async function POST(request: NextRequest) {
           const { gender } = detectGender(meno_raw);
           const has_minor_flag = hasMinorFlag(meno_raw);
 
-          ownerInserts.push([
-            stats.sourceId,
-            katastralne_uzemie,
-            poradie,
-            lv,
-            meno_raw,
-            meno_clean,
-            gender,
-            has_minor_flag
-          ]);
+          // Insert owner
+          await client.query(
+            'INSERT INTO owners (source_id, katastralne_uzemie, poradie, lv, meno_raw, meno_clean, gender, has_minor_flag) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            [stats.sourceId, katastralne_uzemie, poradie, lv, meno_raw, meno_clean, gender, has_minor_flag ? 1 : 0]
+          );
+          
+          // Získanie ID posledného vloženého vlastníka
+          const ownerResult = await client.query('SELECT last_insert_rowid() as id');
+          const ownerId = ownerResult.rows[0]?.id;
+          if (!ownerId) continue;
+
+          // Generate and insert tags
+          const tags = generateTags(meno_raw);
+          for (const tag of tags) {
+            await client.query(
+              'INSERT INTO owner_tags (owner_id, key, value, uncertain) VALUES (?, ?, ?, ?)',
+              [ownerId, tag.key, tag.value, tag.uncertain ? 1 : 0]
+            );
+          }
 
           stats.successfulRows++;
         } catch (error) {
           stats.errors.push(`Riadok ${i + 2}: ${error instanceof Error ? error.message : 'Neznáma chyba'}`);
         }
 
-        // Progress reporting every 10000 rows
-        if ((i + 1) % 10000 === 0) {
+        // Progress reporting every 1000 rows
+        if ((i + 1) % 1000 === 0) {
           debugLog('Progress', { processed: i + 1, total: rows.length, percentage: Math.round(((i + 1) / rows.length) * 100) });
         }
       }
 
-      debugLog('Data preparation complete', { 
-        ownerInserts: ownerInserts.length, 
+      debugLog('Import complete', { 
+        successfulRows: stats.successfulRows, 
         errors: stats.errors.length 
       });
-
-      // Batch insert owners s rozdelením na menšie batche
-      const ownerIds: number[] = [];
-      
-      if (ownerInserts.length > 0) {
-        const OWNER_BATCH_SIZE = 5000; // 5000 rows at a time
-        debugLog('Starting owner batch inserts', { 
-          totalOwners: ownerInserts.length, 
-          batchSize: OWNER_BATCH_SIZE,
-          batches: Math.ceil(ownerInserts.length / OWNER_BATCH_SIZE)
-        });
-
-        for (let i = 0; i < ownerInserts.length; i += OWNER_BATCH_SIZE) {
-          const batch = ownerInserts.slice(i, i + OWNER_BATCH_SIZE);
-          
-          const ownerValues = batch.map((_, index) => 
-            `($${index * 8 + 1}, $${index * 8 + 2}, $${index * 8 + 3}, $${index * 8 + 4}, $${index * 8 + 5}, $${index * 8 + 6}, $${index * 8 + 7}, $${index * 8 + 8})`
-          ).join(', ');
-
-          const ownerParams = batch.flat();
-          const ownerQuery = `
-            INSERT INTO owners (source_id, katastralne_uzemie, poradie, lv, meno_raw, meno_clean, gender, has_minor_flag)
-            VALUES ${ownerValues}
-            RETURNING id
-          `;
-
-          debugLog('Owner batch insert', { 
-            batchNumber: Math.floor(i / OWNER_BATCH_SIZE) + 1,
-            batchSize: batch.length,
-            paramCount: ownerParams.length
-          });
-
-          const ownerResult = await client.query(ownerQuery, ownerParams);
-          const batchIds = ownerResult.rows.map(row => row.id);
-          ownerIds.push(...batchIds);
-
-          debugLog('Owner batch completed', { 
-            insertedIds: batchIds.length,
-            totalSoFar: ownerIds.length
-          });
-        }
-
-        // Generovanie tagov pre vložených vlastníkov pomocou nového tag engine
-        debugLog('Starting tag generation using new tag engine', { 
-          ownerCount: ownerIds.length 
-        });
-
-        // Načítaj všetkých vlastníkov s ich meno_raw
-        const ownersForTags = await client.query(`
-          SELECT id, meno_raw FROM owners 
-          WHERE id = ANY($1::int[])
-          ORDER BY id
-        `, [ownerIds]);
-
-        let totalTagsGenerated = 0;
-        const TAG_BATCH_SIZE = 10000;
-
-        // Spracuj vlastníkov v batchoch pre tagy
-        for (let i = 0; i < ownersForTags.rows.length; i += 1000) {
-          const ownerBatch = ownersForTags.rows.slice(i, i + 1000);
-          const tagInserts: any[] = [];
-
-          // Generuj tagy pre každého vlastníka v batchi
-          for (const owner of ownerBatch) {
-            const tags = await generateTags(owner.meno_raw);
-            
-            for (const tag of tags) {
-              tagInserts.push([owner.id, tag.key, tag.value, tag.uncertain]);
-            }
-          }
-
-          // Batch insert tagov
-          if (tagInserts.length > 0) {
-            for (let j = 0; j < tagInserts.length; j += TAG_BATCH_SIZE) {
-              const batch = tagInserts.slice(j, j + TAG_BATCH_SIZE);
-              
-              const tagValues = batch.map((_, index) => 
-                `($${index * 4 + 1}, $${index * 4 + 2}, $${index * 4 + 3}, $${index * 4 + 4})`
-              ).join(', ');
-
-              const tagParams = batch.flat();
-              const tagQuery = `
-                INSERT INTO owner_tags (owner_id, key, value, uncertain)
-                VALUES ${tagValues}
-              `;
-
-              await client.query(tagQuery, tagParams);
-              totalTagsGenerated += batch.length;
-
-              debugLog('Tag batch completed', { 
-                processed: totalTagsGenerated,
-                currentBatch: batch.length
-              });
-            }
-          }
-
-          debugLog('Owner batch tags completed', { 
-            ownerBatch: `${i + 1}-${Math.min(i + 1000, ownersForTags.rows.length)}`,
-            totalOwners: ownersForTags.rows.length,
-            tagsGenerated: totalTagsGenerated
-          });
-        }
-
-        debugLog('Tag generation complete', { 
-          totalOwners: ownerIds.length,
-          totalTagsGenerated: totalTagsGenerated
-        });
-      }
 
       await client.query('COMMIT');
       stats.duration = Date.now() - startTime;
