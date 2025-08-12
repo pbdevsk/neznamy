@@ -7,8 +7,7 @@ import { ParsedRecord, RawRecord } from '@/lib/parser/types';
 import { generateTags } from '@/lib/normalize';
 import { mergeTags, MergedTag, getConflicts } from '@/lib/parser/tag-merger';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { createZbgisLvUrl } from '@/lib/map-utils';
-import { Database, Upload, FileText, BarChart3, Filter, Download, ExternalLink, MapPin, FileDown, Map as MapIcon } from 'lucide-react';
+import { Database, Upload, FileText, BarChart3, Filter, Download } from 'lucide-react';
 
 interface ProcessedRow {
   originalIndex: number; // Riadok v CSV (pre debug)
@@ -142,7 +141,7 @@ export function AdvancedParserDemo() {
     'adresa', '✝️', 'maloletý', 'vdova'
   ];
 
-  // Funkcia na získanie tagov v správnom poradí (bez základných mien)
+  // Funkcia na získanie tagov v správnom poradí
   const getOrderedTags = (mergedTags: MergedTag[]) => {
     const tagMap = new Map(mergedTags.map(tag => [tag.key, tag]));
     const orderedTags: MergedTag[] = [];
@@ -162,33 +161,6 @@ export function AdvancedParserDemo() {
       .forEach(tag => orderedTags.push(tag));
     
     return orderedTags;
-  };
-
-  // Funkcia na získanie farby pre pohlavie
-  const getGenderColor = (gender: string) => {
-    switch (gender) {
-      case 'muž': return 'bg-blue-500';
-      case 'žena': return 'bg-pink-500';
-      default: return 'bg-gray-400';
-    }
-  };
-
-  // Funkcie pre tlačidlá (použité URL z hlavnej aplikácie)
-  const openLVPdf = (lv: string, poradie: string) => {
-    // Skutočné kataster PDF URL z hlavnej aplikácie
-    const lvUrl = `https://kataster.skgeodesy.sk/Portal45/api/Bo/GeneratePrfPublic/?cadastralUnitCode=${poradie}&prfNumber=${lv}&outputType=pdf`;
-    window.open(lvUrl, '_blank');
-  };
-
-  const openZGBIS = (lv: string, poradie: string) => {
-    // Použitie skutočnej ZBGIS LV URL z hlavnej aplikácie
-    const zbgisUrl = createZbgisLvUrl(parseInt(poradie), parseInt(lv));
-    window.open(zbgisUrl, '_blank');
-  };
-
-  const openGoogleMaps = (katastralne_uzemie: string) => {
-    const searchQuery = encodeURIComponent(`${katastralne_uzemie}, Slovensko`);
-    window.open(`https://www.google.com/maps/search/${searchQuery}`, '_blank');
   };
 
   // Sortované a filtrované dáta
@@ -415,9 +387,9 @@ export function AdvancedParserDemo() {
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                       Pokročilý parser pre analýzu CSV súborov
                     </p>
-        </div>
-      </div>
-
+                  </div>
+                </div>
+                
                 {/* Inline compact stats */}
                 {stats && (
                   <div className="hidden lg:flex items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
@@ -425,18 +397,18 @@ export function AdvancedParserDemo() {
                       <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
                       <span className="font-medium">{stats.totalRows.toLocaleString('sk-SK')}</span>
                       <span>riadkov</span>
-                </div>
+                    </div>
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                       <span className="font-medium">{Object.keys(stats.byGender).length}</span>
                       <span>pohlaví</span>
-              </div>
+                    </div>
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
                       <span className="font-medium">{stats.totalConflicts}</span>
                       <span>konfliktov</span>
-              </div>
-                </div>
+                    </div>
+                  </div>
                 )}
               </div>
               
@@ -522,8 +494,8 @@ export function AdvancedParserDemo() {
             </div>
           </div>
         </div>
-              </div>
-              
+      </div>
+
       {/* Main content */}
       <div className="p-6">
         {/* Column mapping */}
@@ -549,12 +521,12 @@ export function AdvancedParserDemo() {
                       <option key={header} value={header}>{header}</option>
                     ))}
                   </select>
-                      </div>
-                    ))}
-                  </div>
                 </div>
-              )}
-              
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Progress */}
         {isProcessing && (
           <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
@@ -567,10 +539,10 @@ export function AdvancedParserDemo() {
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
-                  </div>
-                </div>
-              )}
-              
+            </div>
+          </div>
+        )}
+
         {/* Results table */}
         {processedRows.length > 0 && (
           <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
@@ -590,161 +562,169 @@ export function AdvancedParserDemo() {
             
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                                 <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600 border-b border-gray-200 dark:border-gray-600">
-                   <tr>
-                     <SortableHeader field="krstne_meno" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[200px]">
-                       Meno a priezvisko
-                     </SortableHeader>
-                     <SortableHeader field="katastralne_uzemie" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[120px]">
-                       Katastrálne územie
-                     </SortableHeader>
-                     <SortableHeader field="poradie" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[80px]">
-                       Poradie
-                     </SortableHeader>
-                     <SortableHeader field="lv" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[80px]">
-                       LV
-                     </SortableHeader>
-                     <th className="px-3 py-3 text-left font-semibold min-w-[400px]">
-                       Rodinné a ostatné tagy
-                     </th>
-                     <th className="px-3 py-3 text-left font-semibold min-w-[80px]">
-                       Score
-                     </th>
-                     <th className="px-3 py-3 text-left font-semibold min-w-[120px]">
-                       Akcie
-                     </th>
-                   </tr>
-                 </thead>
+                <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600 border-b border-gray-200 dark:border-gray-600">
+                  <tr>
+                    <SortableHeader field="poradie" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[80px]">
+                      Poradie
+                    </SortableHeader>
+                    <SortableHeader field="katastralne_uzemie" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[120px]">
+                      Katastrálne územie
+                    </SortableHeader>
+                    <SortableHeader field="lv" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[80px]">
+                      LV
+                    </SortableHeader>
+                    <SortableHeader field="krstne_meno" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[120px]">
+                      Meno
+                    </SortableHeader>
+                    <SortableHeader field="priezvisko" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[120px]">
+                      Priezvisko
+                    </SortableHeader>
+                    <SortableHeader field="pohlavie" handleSort={handleSort} sortField={sortField} sortDirection={sortDirection} className="min-w-[80px]">
+                      Pohlavie
+                    </SortableHeader>
+                    <th className="px-3 py-3 text-left font-semibold min-w-[300px]">
+                      Pôvodný text
+                    </th>
+                    <th className="px-3 py-3 text-left font-semibold min-w-[400px]">
+                      Rodinné a ostatné tagy
+                    </th>
+                    <th className="px-3 py-3 text-left font-semibold min-w-[80px]">
+                      Score
+                    </th>
+                    <th className="px-3 py-3 text-left font-semibold min-w-[80px]">
+                      JSON
+                    </th>
+                  </tr>
+                </thead>
                 <tbody className="divide-y divide-gray-100 dark:divide-gray-600">
                   {sortedAndFilteredRows.slice(0, 1000).map((row) => {
                     const orderedTags = getOrderedTags(row.mergedTags);
                     const krstneMeno = row.mergedTags.find(t => t.key === 'krstné_meno');
                     const priezvisko = row.mergedTags.find(t => t.key === 'priezvisko');
 
-                                                              return (
-                       <tr key={row.originalIndex} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                         {/* Meno a priezvisko s farebným krúžkom pre pohlavie */}
-                         <td className="px-3 py-3">
-                           <div className="flex items-center gap-2">
-                             <div className={`w-2 h-2 rounded-full ${getGenderColor(row.parsed.gender)}`} title={row.parsed.gender || 'neznáme'}></div>
-                             <div className="cursor-help" title={`Pôvodný text: "${row.meno_raw}"`}>
-                               {krstneMeno && priezvisko ? (
-                                 <span className="font-medium text-gray-900 dark:text-gray-100">
-                                   {krstneMeno.value} {priezvisko.value}
-                                 </span>
-                               ) : krstneMeno ? (
-                                 <span className="font-medium text-gray-900 dark:text-gray-100">
-                                   {krstneMeno.value}
-                                 </span>
-                               ) : priezvisko ? (
-                                 <span className="font-medium text-gray-900 dark:text-gray-100">
-                                   {priezvisko.value}
-                                 </span>
-                               ) : (
-                                 <span className="text-gray-400 italic">-</span>
-                               )}
-          </div>
-        </div>
-                         </td>
-                         
-                         {/* Katastrálne územie */}
-                         <td className="px-3 py-3 text-gray-700 dark:text-gray-300">
-                           {row.katastralne_uzemie}
-                         </td>
-                         
-                         {/* Poradové číslo z CSV */}
-                         <td className="px-3 py-3 text-gray-600 font-medium">
-                           {row.poradie}
-                         </td>
-                         
-                         {/* LV */}
-                         <td className="px-3 py-3">
-                           <button
-                             onClick={() => setSelectedLV(selectedLV === row.lv ? null : row.lv)}
-                             className={`font-mono text-sm px-2 py-1 rounded transition-colors ${
-                               selectedLV === row.lv 
-                                 ? 'bg-blue-100 text-blue-800 font-bold' 
-                                 : 'text-blue-600 hover:bg-blue-50'
-                             }`}
-                             title={`LV číslo: ${row.lv} - kliknite pre filtrovanie`}
-                           >
-                             {row.lv}
-                           </button>
-                         </td>
-                         
-                         {/* Rodinné a ostatné tagy */}
-                         <td className="px-3 py-3">
-                           <div className="flex flex-wrap gap-1">
-                             {orderedTags.map((tag, tagIndex) => (
-                               <span
-                                 key={tagIndex}
-                                 className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                                   tag.source === 'advanced' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-                                   tag.source === 'system' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                                   'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
-                                 } ${tag.conflict ? 'ring-2 ring-red-300' : ''}`}
-                                 title={`${formatTagName(tag.key)}: ${tag.value} (${(tag.confidence * 100).toFixed(0)}% ${tag.source.toUpperCase()})${tag.conflict ? '\n⚠️ KONFLIKT: ' + tag.reasoning : ''}`}
-                               >
-                                 {tag.conflict && '⚠️ '}
-                                 <strong>{formatTagName(tag.key)}:</strong> {tag.value}
-                               </span>
-                             ))}
-                             {orderedTags.length === 0 && (
-                               <span className="text-gray-400 italic text-xs">Žiadne ďalšie tagy</span>
-      )}
-    </div>
-                         </td>
-                         
-                         {/* Score */}
-                         <td className="px-3 py-3">
-                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                             row.parsed.parse_score >= 0.8 ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                             row.parsed.parse_score >= 0.6 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-                             'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                           }`}>
-                             {(row.parsed.parse_score * 100).toFixed(0)}%
-        </span>
-                         </td>
-                         
-                         {/* Akcie */}
-                         <td className="px-3 py-3">
-                           <div className="flex items-center gap-1">
-                             <button
-                               onClick={() => openLVPdf(row.lv, row.poradie)}
-                               className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                               title="Otvoriť LV PDF"
-                             >
-                               <FileDown className="h-3 w-3" />
-                             </button>
-                             <button
-                               onClick={() => openZGBIS(row.lv, row.poradie)}
-                               className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
-                               title="Otvoriť v ZBGIS katastri"
-                             >
-                               <MapIcon className="h-3 w-3" />
-                             </button>
-                             <button
-                               onClick={() => openGoogleMaps(row.katastralne_uzemie)}
-                               className="p-1 text-red-600 hover:bg-red-50 rounded transition-colors"
-                               title="Otvoriť v Google Maps"
-                             >
-                               <MapPin className="h-3 w-3" />
-                             </button>
-                             <button
-                               onClick={() => copyRowAsJSON(row)}
-                               className={`p-1 rounded transition-colors ${
-                                 copySuccess === row.originalIndex
-                                   ? 'text-green-600 bg-green-50'
-                                   : 'text-gray-600 hover:bg-gray-50'
-                               }`}
-                               title="Kopírovať JSON dáta riadku"
-                             >
-                               {copySuccess === row.originalIndex ? '✓' : '📋'}
-                             </button>
-                           </div>
-                         </td>
-                       </tr>
-                     );
+                    return (
+                      <tr key={row.originalIndex} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                        {/* Poradové číslo z CSV */}
+                        <td className="px-3 py-3 text-gray-600 font-medium">
+                          {row.poradie}
+                        </td>
+                        
+                        {/* Katastrálne územie */}
+                        <td className="px-3 py-3 text-gray-700 dark:text-gray-300">
+                          {row.katastralne_uzemie}
+                        </td>
+                        
+                        {/* LV */}
+                        <td className="px-3 py-3">
+                          <button
+                            onClick={() => setSelectedLV(selectedLV === row.lv ? null : row.lv)}
+                            className={`font-mono text-sm px-2 py-1 rounded transition-colors ${
+                              selectedLV === row.lv 
+                                ? 'bg-blue-100 text-blue-800 font-bold' 
+                                : 'text-blue-600 hover:bg-blue-50'
+                            }`}
+                            title={`LV číslo: ${row.lv} - kliknite pre filtrovanie`}
+                          >
+                            {row.lv}
+                          </button>
+                        </td>
+                        
+                        {/* Meno */}
+                        <td className="px-3 py-3">
+                          {krstneMeno ? (
+                            <span 
+                              className="font-medium text-gray-900 dark:text-gray-100"
+                              title={`${formatTagName(krstneMeno.key)}: ${krstneMeno.value} (${(krstneMeno.confidence * 100).toFixed(0)}% ${krstneMeno.source.toUpperCase()})`}
+                            >
+                              {krstneMeno.value}
+                            </span>
+                          ) : (
+                            <span className="text-gray-400 italic">-</span>
+                          )}
+                        </td>
+                        
+                        {/* Priezvisko */}
+                        <td className="px-3 py-3">
+                          {priezvisko ? (
+                            <span 
+                              className="font-medium text-gray-900 dark:text-gray-100"
+                              title={`${formatTagName(priezvisko.key)}: ${priezvisko.value} (${(priezvisko.confidence * 100).toFixed(0)}% ${priezvisko.source.toUpperCase()})`}
+                            >
+                              {priezvisko.value}
+                            </span>
+                          ) : (
+                            <span className="text-gray-400 italic">-</span>
+                          )}
+                        </td>
+                        
+                        {/* Pohlavie */}
+                        <td className="px-3 py-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            row.parsed.gender === 'muž' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+                            row.parsed.gender === 'žena' ? 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200' :
+                            'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'
+                          }`}>
+                            {row.parsed.gender || '?'}
+                          </span>
+                        </td>
+                        
+                        {/* Pôvodný text */}
+                        <td className="px-3 py-3">
+                          <div className="text-sm text-gray-700 dark:text-gray-300 italic max-w-xs overflow-hidden text-ellipsis">
+                            {row.meno_raw}
+                          </div>
+                        </td>
+                        
+                        {/* Rodinné a ostatné tagy */}
+                        <td className="px-3 py-3">
+                          <div className="flex flex-wrap gap-1">
+                            {orderedTags.map((tag, tagIndex) => (
+                              <span
+                                key={tagIndex}
+                                className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+                                  tag.source === 'advanced' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+                                  tag.source === 'system' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+                                  'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
+                                } ${tag.conflict ? 'ring-2 ring-red-300' : ''}`}
+                                title={`${formatTagName(tag.key)}: ${tag.value} (${(tag.confidence * 100).toFixed(0)}% ${tag.source.toUpperCase()})${tag.conflict ? '\n⚠️ KONFLIKT: ' + tag.reasoning : ''}`}
+                              >
+                                {tag.conflict && '⚠️ '}
+                                <strong>{formatTagName(tag.key)}:</strong> {tag.value}
+                              </span>
+                            ))}
+                            {orderedTags.length === 0 && (
+                              <span className="text-gray-400 italic text-xs">Žiadne ďalšie tagy</span>
+                            )}
+                          </div>
+                        </td>
+                        
+                        {/* Score */}
+                        <td className="px-3 py-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            row.parsed.parse_score >= 0.8 ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+                            row.parsed.parse_score >= 0.6 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+                            'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                          }`}>
+                            {(row.parsed.parse_score * 100).toFixed(0)}%
+                          </span>
+                        </td>
+                        
+                        {/* JSON */}
+                        <td className="px-3 py-3">
+                          <button
+                            onClick={() => copyRowAsJSON(row)}
+                            className={`px-3 py-1 text-xs rounded-md transition-colors font-medium ${
+                              copySuccess === row.originalIndex
+                                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                                : 'bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300'
+                            }`}
+                            title="Kopírovať JSON dáta riadku"
+                          >
+                            {copySuccess === row.originalIndex ? '✓' : '📋'}
+                          </button>
+                        </td>
+                      </tr>
+                    );
                   })}
                 </tbody>
               </table>

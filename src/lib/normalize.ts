@@ -669,14 +669,16 @@ function parseMaidenSurname(clause: string, result: ParsedPerson): boolean {
   if (result.maiden_surname) return false; // Už máme
   
   for (const marker of MARKERS.maiden) {
-    const regex = new RegExp(`\\b${escapeRegex(marker)}\\s+([A-ZÁČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ][^,]*?)`, 'i');
+    // Regex pre zachytenie rodného priezviska až po čiarku, zátvorku alebo koniec
+    const regex = new RegExp(`\\b${escapeRegex(marker)}\\s+([A-ZÁČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ][^,)]*?)(?:[,)]|$)`, 'i');
     const match = clause.match(regex);
     
     if (match) {
-      result.maiden_surname = match[1].trim();
+      const maidenName = match[1].trim();
+      result.maiden_surname = maidenName;
       result.tags.push({
         key: 'rodné_priezvisko',
-        value: match[1].trim(),
+        value: maidenName,
         confidence: 1.0,
         uncertain: false,
         rule: 'RULE_MAIDEN_PARENTHESES'
