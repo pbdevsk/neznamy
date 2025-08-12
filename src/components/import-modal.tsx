@@ -38,13 +38,14 @@ interface ProgressUpdate {
 
 export function ImportModal({ isOpen, onClose, onSuccess }: ImportModalProps) {
   const [file, setFile] = useState<File | null>(null);
-  const [delimiter, setDelimiter] = useState<string>(',');
+  const [delimiter, setDelimiter] = useState<string>(';');
   const [columnMapping, setColumnMapping] = useState<ColumnMapping>({});
   const [availableColumns, setAvailableColumns] = useState<string[]>([]);
   const [step, setStep] = useState<'upload' | 'mapping' | 'importing' | 'result'>('upload');
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [error, setError] = useState<string>('');
   const [progressUpdate, setProgressUpdate] = useState<ProgressUpdate | null>(null);
+
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -105,12 +106,14 @@ export function ImportModal({ isOpen, onClose, onSuccess }: ImportModalProps) {
     }
   };
 
+
+
   const handleImport = async () => {
     debugLog('Import attempt', { 
       hasFile: !!file, 
       isMappingComplete, 
       delimiter, 
-      columnMapping 
+      columnMapping
     });
     
     if (!file) {
@@ -126,6 +129,8 @@ export function ImportModal({ isOpen, onClose, onSuccess }: ImportModalProps) {
     setStep('importing');
     setError('');
     setProgressUpdate(null);
+
+    // Používame iba štandardný import s progress reportingom
     
     try {
       const formData = new FormData();
@@ -133,15 +138,33 @@ export function ImportModal({ isOpen, onClose, onSuccess }: ImportModalProps) {
       formData.append('delimiter', delimiter);
       formData.append('columnMapping', JSON.stringify(columnMapping));
 
-      debugAPI('POST', '/api/import-progress', {
+      // Používame štandardný import s progress reportingom
+      const endpoint = '/api/import-progress';
+      
+      debugAPI('POST', endpoint, {
         fileName: file.name,
         delimiter,
         columnMapping
       });
 
-      const response = await fetch('/api/import-progress', {
+      debugLog('Making request to endpoint:', endpoint);
+      debugLog('FormData contents:', {
+        fileName: file.name,
+        fileSize: file.size,
+        delimiter,
+        columnMapping
+      });
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         body: formData
+      });
+
+      debugLog('Response received:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: Object.fromEntries(response.headers.entries())
       });
 
       debugLog('Import response', {
@@ -322,6 +345,8 @@ export function ImportModal({ isOpen, onClose, onSuccess }: ImportModalProps) {
                   </div>
                 ))}
               </div>
+
+
 
               <div className="flex gap-3 pt-4">
                 <button

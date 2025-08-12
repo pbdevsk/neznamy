@@ -61,7 +61,11 @@ async function processImportWithProgress(
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    const delimiter = (formData.get('delimiter') as string) || ',';
+    let delimiter = (formData.get('delimiter') as string) || ',';
+    // Fix for delimiter parsing
+    if (delimiter === '' || delimiter === null || delimiter === undefined) {
+      delimiter = ';'; // default to semicolon
+    }
     const columnMappingString = formData.get('columnMapping') as string;
     
     if (!file) {
@@ -106,11 +110,14 @@ async function processImportWithProgress(
     });
 
     const csvText = await file.text();
+
+    
     const parseResult = Papa.parse(csvText, {
       header: true,
       delimiter: delimiter,
       skipEmptyLines: true,
-      transformHeader: (header: string) => header.trim()
+      transformHeader: (header: string) => header.trim(),
+      skipErrors: true
     });
 
     if (parseResult.errors.length > 0) {
@@ -128,7 +135,14 @@ async function processImportWithProgress(
       return;
     }
 
-    const rows = parseResult.data as CSVRow[];
+    let rows = parseResult.data as CSVRow[];
+    
+    // Odstránenie prázdnych riadkov
+    rows = rows.filter(row => {
+      const hasData = Object.values(row).some(value => value && value.toString().trim() !== '');
+      return hasData;
+    });
+    
     const totalRows = rows.length;
 
     sendProgress({
@@ -220,7 +234,9 @@ async function processImportWithProgress(
           const lv = parseInt(row[columnMapping.lv]?.trim() || '0');
           const meno_raw = row[columnMapping.meno]?.trim();
 
-          if (!katastralne_uzemie || !meno_raw || isNaN(poradie) || isNaN(lv)) {
+
+
+          if (!katastralne_uzemie || !meno_raw || isNaN(poradie) || isNaN(lv) || poradie < 0 || lv < 0) {
             stats.errors.push(`Riadok ${i + 2}: Neplatné alebo chýbajúce povinné údaje`);
             continue;
           }
@@ -242,11 +258,12 @@ async function processImportWithProgress(
 
           stats.successfulRows++;
 
-          // Generate tags
-          const tags = generateTags(meno_raw);
-          for (const tag of tags) {
-            allTags.push([tag.key, tag.value, tag.uncertain]);
-          }
+          // Generate tags - temporarily disabled for debugging
+          // const tags = generateTags(meno_raw);
+          // const ownerIndex = ownerInserts.length - 1; // Current owner index (after push)
+          // for (const tag of tags) {
+          //   allTags.push([ownerIndex, tag.key, tag.value, tag.uncertain]);
+          // }
 
         } catch (error) {
           stats.errors.push(`Riadok ${i + 2}: ${(error as Error).message}`);
@@ -339,14 +356,10 @@ async function processBatch(
   if (allTags.length > 0) {
     const tagValues: string[] = [];
     const tagParams: any[] = [];
-    let tagIndex = 0;
 
-    for (let i = 0; i < insertedOwnerIds.length; i++) {
-      const ownerId = insertedOwnerIds[i];
-      const ownerTagCount = allTags.length / ownerInserts.length; // Approximate
-
-      for (let j = 0; j < ownerTagCount && tagIndex < allTags.length; j++, tagIndex++) {
-        const [key, value, uncertain] = allTags[tagIndex];
+    for (const [ownerIndex, key, value, uncertain] of allTags) {
+      const ownerId = insertedOwnerIds[ownerIndex];
+      if (ownerId) {
         const baseIdx = tagParams.length;
         tagValues.push(`($${baseIdx + 1}, $${baseIdx + 2}, $${baseIdx + 3}, $${baseIdx + 4})`);
         tagParams.push(ownerId, key, value, uncertain);

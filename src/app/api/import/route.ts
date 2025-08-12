@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { pool } from '@/lib/db';
 import { normalizeText, hasMinorFlag, detectGender, generateTags } from '@/lib/normalize';
 import { debugLog, debugError, debugAPI } from '@/lib/debug';
+import { AdvancedParser } from '@/lib/parser/advanced-parser';
+import { ImportUtils } from '@/lib/parser/import-utils';
 import Papa from 'papaparse';
 
 interface CSVRow {
@@ -23,7 +25,11 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    const delimiter = (formData.get('delimiter') as string) || ',';
+    let delimiter = (formData.get('delimiter') as string) || ',';
+    // Fix for delimiter parsing  
+    if (delimiter === '' || delimiter === null || delimiter === undefined) {
+      delimiter = ';'; // default to semicolon
+    }
     const columnMappingString = formData.get('columnMapping') as string;
     
     debugLog('Import params', {
@@ -141,7 +147,7 @@ export async function POST(request: NextRequest) {
           const lv = parseInt(row[columnMapping.lv]?.trim() || '0');
           const meno_raw = row[columnMapping.meno]?.trim();
 
-          if (!katastralne_uzemie || !meno_raw || isNaN(poradie) || isNaN(lv)) {
+          if (!katastralne_uzemie || !meno_raw || isNaN(poradie) || isNaN(lv) || poradie < 0 || lv < 0) {
             stats.errors.push(`Riadok ${i + 2}: Neplatné alebo chýbajúce povinné údaje`);
             continue;
           }
